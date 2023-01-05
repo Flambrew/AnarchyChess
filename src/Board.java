@@ -28,6 +28,7 @@ public class Board {
     }
 
     public void movePiece(int fromLocation, int toLocation) {
-
+        board[toLocation] = board[fromLocation];
+        board[fromLocation] = null;
     }
 }
