@@ -1,4 +1,4 @@
-package src;
+package src.run;
 
 /**
  * Anarchy Chess
@@ -9,7 +9,7 @@ package src;
  * @since 01.04.2023
  */
 
-public class Main {
+public class MainLoop {
 
     public static void main(String[] args) {
         
