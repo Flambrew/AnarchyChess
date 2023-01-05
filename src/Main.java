@@ -1,3 +1,5 @@
+package src;
+
 /**
  * Anarchy Chess
  * Chess, with extra rules implemented from the r/AnarchyChess subreddit
