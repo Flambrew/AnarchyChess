@@ -1,5 +1,8 @@
 package src.piece;
 
+/**
+ * @author Andrew Matherne
+ */
 public enum PieceType {
     NONE(0),
     PAWN(1),

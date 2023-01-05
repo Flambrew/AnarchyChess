@@ -1,5 +1,10 @@
 package src.game;
 
+import src.piece.PieceColor;
+
+/**
+ * @author Andrew Matherne
+ */
 public class Rules {
 
     private final Board board;
@@ -32,12 +37,25 @@ public class Rules {
     }
     
     // TODO:rules
-    private boolean pawn(int from, int to) {
 
+    // todo: pawn movement + format moves into arrays
+    private boolean pawn(int from, int to) {
+        int[][] captures = {{-9, -7}, {7, 9}};
+        int[][] moves = {{-9, -7}, {7, 9}};
+        if (board.getPiece(from).getColor() == PieceColor.WHITE) {
+            
+
+
+        } else {
+
+
+
+        }
         return false;
     }
 
     private boolean knight(int from, int to) {
+
         if (board.getPiece(from).getColor() == board.getPiece(to).getColor())
             return false;
         for (int validMove : new int[] { -17, -15, -10, -6, 6, 10, 15, 17 })

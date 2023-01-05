@@ -1,5 +1,8 @@
 package src.piece;
 
+/**
+ * @author Andrew Matherne
+ */
 public enum PieceColor {
     NONE(0),
     WHITE(1),
