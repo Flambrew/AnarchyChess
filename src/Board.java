@@ -3,11 +3,7 @@ import java.util.List;
 
 public class Board {
     
-    Piece[] board;
-
-    public Piece[] getBoard() {
-        return board;
-    }
+    private final Piece[] board = new Piece[64];
 
     public Piece getPiece(int location) {
         return board[location];
@@ -24,6 +20,14 @@ public class Board {
                 pieceLocations.add(i);
             }
         }
-        return pieceLocations.stream().mapToInt(Integer::intValue).toArray();;
+        return pieceLocations.stream().mapToInt(Integer::intValue).toArray();
+    }
+
+    public Board() {
+        
+    }
+
+    public void movePiece(int fromLocation, int toLocation) {
+
     }
 }
