@@ -10,6 +10,11 @@ public class Piece {
         this.TYPE = type;
     }
 
+    public Piece(Piece other) {
+        this.COLOR = other.COLOR;
+        this.TYPE = other.TYPE;
+    }
+
     public PieceColor getColor() {
         return COLOR;
     }

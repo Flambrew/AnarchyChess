@@ -30,8 +30,10 @@ public class Rules {
                 throw new Exception("Move Legality not defined for piece: " + board.getPiece(from).getType());
         }
     }
-
+    
+    // TODO:rules
     private boolean pawn(int from, int to) {
+
         return false;
     }
 

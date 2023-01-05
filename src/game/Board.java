@@ -7,18 +7,52 @@ import src.piece.Piece;
 import src.piece.PieceColor;
 import src.piece.PieceType;
 
+/**
+ * 
+ */
 public class Board {
 
+    /**
+     * Array of <code>Piece</code> objects with length of 64.
+     */
     private final Piece[] board = new Piece[64];
 
+    /**
+     * Initializes a new <code>Board</code> with preset <code>Pieces</code> matching
+     * the official chess piece starting positions.
+     */
     public Board() {
         boardSetup();
     }
 
+    /**
+     * Initializes a new <code>Board</code> with preset <code>Pieces</code> matching
+     * a given array of locations.
+     *
+     * @param positions 2D array of <code>Pieces</code>.
+     * @param pieceList Order in which the rows of the given array refer to
+     *                  <code>Piece</code> types.
+     */
+    public Board(int[][] positionList, Piece[] pieceList) {
+        boardSetup(positionList, pieceList);
+    }
+
+    /**
+     * Returns a <code>Piece</code> from the board given a location.
+     * 
+     * @param location
+     * @return
+     */
     public Piece getPiece(int location) {
         return board[location];
     }
 
+    /**
+     * Sets a location on the board to a certain <code>Piece</code>.
+     * 
+     * @param piece
+     * @param location
+     */
     public void setPiece(Piece piece, int location) {
         board[location] = piece;
     }
@@ -61,6 +95,16 @@ public class Board {
             board[i] = new Piece(PieceColor.BLACK, PieceType.ROOK);
         board[3] = new Piece(PieceColor.BLACK, PieceType.QUEEN);
         board[4] = new Piece(PieceColor.BLACK, PieceType.KING);
+    }
+
+    private void boardSetup(int[][] positionList, Piece[] pieceList) {
+        if (positionList.length != pieceList.length)
+            throw new IllegalArgumentException("Board Setup Error: pieceList and positionList lengths do not match.");
+        for (int i = 0; i < 64; i++)
+            board[i] = new Piece(PieceColor.NONE, PieceType.NONE);
+        for (int i = 0; i < pieceList.length; i++)
+            for (int j = 0; j < positionList[i].length; j++)
+                board[positionList[i][j]] = new Piece(pieceList[i]);
     }
 
     public String toString() {
