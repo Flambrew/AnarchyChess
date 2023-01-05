@@ -16,7 +16,7 @@ public class Board {
 
     /**
      * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
-     * matching the official chess piece starting positions.
+     * matching the official chess piece starting positions
      */
     public Board() {
         boardSetup();
@@ -24,7 +24,7 @@ public class Board {
 
     /**
      * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
-     * matching a given array of positions.
+     * matching a given array of positions
      *
      * @param positions 2D array of <code>Piece</code>
      * @param pieceList Order in which the rows of the given array refer to
@@ -35,7 +35,7 @@ public class Board {
     }
 
     /**
-     * Returns a <code>Piece</code> from the board given a position.
+     * Returns a <code>Piece</code> from the board given a position
      * 
      * @param position
      * @return <code>Piece</code> at <code>position</code>
@@ -45,7 +45,7 @@ public class Board {
     }
 
     /**
-     * Sets a position on the board to a certain <code>Piece</code>.
+     * Sets a position on the board to a certain <code>Piece</code>
      * 
      * @param piece
      * @param position
@@ -56,7 +56,7 @@ public class Board {
 
     /**
      * Returns an array containing positions of all <code>Piece</code> objects with
-     * a given <code>PieceColor</code> and <code>PieceType</code>.
+     * a given <code>PieceColor</code> and <code>PieceType</code>
      * 
      * @param color
      * @param type
