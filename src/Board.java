@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import src.pieces.Piece;
+import src.pieces.PieceColor;
+import src.pieces.PieceType;
 
 public class Board {
     
@@ -31,8 +33,18 @@ public class Board {
         
     }
 
+    public void addPiece(PieceColor color, PieceType type, int location) {
+
+    }
+
     public void movePiece(int fromLocation, int toLocation) {
         board[toLocation] = board[fromLocation];
         board[fromLocation] = null;
+        // board[toLocation].setLocation(fromLocation);
+
+        // TODO: figure out how tf i wanna implement move rules
+        // ideas- every piece has location, move check
+        //        all the move checks happen in Board
+        //        new ChessRules class that somehow interfaces with Board
     }
 }

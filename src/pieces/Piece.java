@@ -1,20 +1,28 @@
 package src.pieces;
 
-public class Piece {
+public class Piece implements IPiece {
     
-    private final PieceColor color;
-    private final PieceType type;
+    private final PieceColor COLOR;
+    private final PieceType TYPE;
 
-    public Piece(PieceColor color, PieceType type) {
-        this.color = color;
-        this.type = type;
+    private int location;
+
+    public Piece(PieceColor color, PieceType type, int location) {
+        this.COLOR = color;
+        this.TYPE = type;
+        
+        this.location = location;
     }
 
     public PieceColor getColor() {
-        return color;
+        return COLOR;
     }
 
     public PieceType getType() {
-        return type;
+        return TYPE;
+    }
+
+    public boolean legalMove(int toLocation, int fromLocation) {
+        return false;
     }
 }
