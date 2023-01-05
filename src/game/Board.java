@@ -8,63 +8,74 @@ import src.piece.PieceColor;
 import src.piece.PieceType;
 
 /**
- * 
+ * @author Andrew Matherne
  */
 public class Board {
 
-    /**
-     * Array of <code>Piece</code> objects with length of 64.
-     */
     private final Piece[] board = new Piece[64];
 
     /**
-     * Initializes a new <code>Board</code> with preset <code>Pieces</code> matching
-     * the official chess piece starting positions.
+     * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
+     * matching the official chess piece starting positions.
      */
     public Board() {
         boardSetup();
     }
 
     /**
-     * Initializes a new <code>Board</code> with preset <code>Pieces</code> matching
-     * a given array of locations.
+     * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
+     * matching a given array of positions.
      *
-     * @param positions 2D array of <code>Pieces</code>.
+     * @param positions 2D array of <code>Piece</code>
      * @param pieceList Order in which the rows of the given array refer to
-     *                  <code>Piece</code> types.
+     *                  <code>Piece</code> types
      */
     public Board(int[][] positionList, Piece[] pieceList) {
         boardSetup(positionList, pieceList);
     }
 
     /**
-     * Returns a <code>Piece</code> from the board given a location.
+     * Returns a <code>Piece</code> from the board given a position.
      * 
-     * @param location
-     * @return
+     * @param position
+     * @return <code>Piece</code> at <code>position</code>
      */
-    public Piece getPiece(int location) {
-        return board[location];
+    public Piece getPiece(int position) {
+        return board[position];
     }
 
     /**
-     * Sets a location on the board to a certain <code>Piece</code>.
+     * Sets a position on the board to a certain <code>Piece</code>.
      * 
      * @param piece
-     * @param location
+     * @param position
      */
-    public void setPiece(Piece piece, int location) {
-        board[location] = piece;
+    public void setPiece(Piece piece, int position) {
+        board[position] = piece;
     }
 
-    public int[] findPiece(PieceType type) {
-        List<Integer> pieceLocations = new ArrayList<Integer>();
+    /**
+     * Returns an array containing positions of all <code>Piece</code> objects with
+     * a given <code>PieceColor</code> and <code>PieceType</code>.
+     * 
+     * @param color
+     * @param type
+     * @return <code>Piece[]</code>
+     */
+    public int[] findPiece(PieceColor color, PieceType type) {
+        List<Integer> piecePositions = new ArrayList<Integer>();
         for (int i = 0; i < board.length; i++)
-            if (board[i].getType() == type)
-                pieceLocations.add(i);
-        return pieceLocations.stream().mapToInt(Integer::intValue).toArray();
+            if (board[i].getColor() == color && board[i].getType() == type)
+                piecePositions.add(i);
+        return piecePositions.stream().mapToInt(Integer::intValue).toArray();
     }
 
+    /**
+     * Moves a <code>Piece</code> from one position to another, overriding the contents of the destination position
+     * 
+     * @param from
+     * @param to
+     */
     public void movePiece(int from, int to) {
         board[to] = board[from];
         board[from] = null;
