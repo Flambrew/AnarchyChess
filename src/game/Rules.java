@@ -1,6 +1,7 @@
 package src.game;
 
 import src.piece.PieceColor;
+import src.piece.PieceType;
 
 /**
  * @author Andrew Matherne
@@ -16,7 +17,7 @@ public class Rules {
     }
 
     public boolean legalMove(int from, int to) throws Exception {
-        if (board.getPiece(from) == null)
+        if (board.getPiece(from) == null || board.getPiece(from).getType() == PieceType.NONE)
             return false;
         switch (board.getPiece(from).getType()) {
             case PAWN:
@@ -35,33 +36,36 @@ public class Rules {
                 throw new Exception("Move Legality not defined for piece: " + board.getPiece(from).getType());
         }
     }
-    
+
     // TODO:rules
 
-    // todo: pawn movement + format moves into arrays
     private boolean pawn(int from, int to) {
-        int[][] captures = {{-9, -7}, {7, 9}};
-        int[][] moves = {{-9, -7}, {7, 9}};
+        // TODO: Pawn: En Passant
+        if (board.getPiece(from).getColor() == board.getPiece(to).getColor())
+            return false;
         if (board.getPiece(from).getColor() == PieceColor.WHITE) {
-            
-
-
+            if (board.getPiece(to).getColor() == PieceColor.NONE) {
+                if (from / 8 == 6 && board.getPiece(from - 8).getType() == PieceType.NONE)
+                    return evalMove(from, to, -8, -16);
+                return evalMove(from, to, -8);
+            } else {
+                return evalMove(from, to, -9, -7);
+            }
         } else {
-
-
-
+            if (board.getPiece(to).getColor() == PieceColor.NONE) {
+                if (from / 8 == 6 && board.getPiece(from + 8).getType() == PieceType.NONE)
+                    return evalMove(from, to, 8, 16);
+                return evalMove(from, to, 8);
+            } else {
+                return evalMove(from, to, 7, 9);
+            }
         }
-        return false;
     }
 
     private boolean knight(int from, int to) {
-
         if (board.getPiece(from).getColor() == board.getPiece(to).getColor())
             return false;
-        for (int validMove : new int[] { -17, -15, -10, -6, 6, 10, 15, 17 })
-            if (to - from == validMove)
-                return true;
-        return false;
+        return evalMove(from, to, -17, -15, -10, -8, 8, 10, 15, 17);
     }
 
     private boolean bishop(int from, int to) {
@@ -77,6 +81,17 @@ public class Rules {
     }
 
     private boolean king(int from, int to) {
+        return false;
+    }
+
+    private boolean evalMove(int from, int to, int... validMoves) {
+        for (int validMove : validMoves)
+            if (to - from == validMove)
+                return true;
+        return false;
+    }
+
+    private boolean evalSlide(int from, int to, int... directions) {
         return false;
     }
 }
