@@ -93,9 +93,13 @@ public class Rules {
 
     // alg - a=(from%8+from/8);b=(to%8+to/8);a%2==b%2&&(a%7==b%7||a%9==b%9)
     private boolean evalSlide(int from, int to, Axis axis) {
+        if (board.getPiece(from).getColor() == board.getPiece(to).getColor())
+            return false;
         if (axis == Axis.CARDINAL) {
-            if (from / 8 == to / 8 || from % 8 == to % 8) {
+            if (from / 8 == to / 8) {
                 
+            } else if (from % 8 == to % 8) {
+
             }
         } else if (axis == Axis.DIAGONAL) {
             if ((from / 8 + from % 8) % 2 == (to / 8 + to % 8) % 2 && (from % 7 == to % 7 || from % 9 == to % 9)) {
