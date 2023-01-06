@@ -8,6 +8,8 @@ public class Piece {
     private final PieceColor COLOR;
     private final PieceType TYPE;
 
+    private boolean hasBeenMoved;
+
     /**
      * Initializes a new <code>Piece</code> given a <code>PieceColor</code> and
      * <code>PieceType</code>
@@ -21,7 +23,7 @@ public class Piece {
     }
 
     /**
-     * Initializes a new <code>Piece</code> as a clone of a <code>Piece</code>
+     * Copy constructor for <code>Piece</code>
      * 
      * @param other
      */
@@ -46,6 +48,22 @@ public class Piece {
      */
     public PieceType getType() {
         return TYPE;
+    }
+    
+    /**
+     * Returns whether the <code>Piece</code> has been moved or not
+     * 
+     * @return boolean
+     */
+    public boolean hasBeenMoved() {
+        return hasBeenMoved;
+    }
+    
+    /**
+     * Sets <code>Piece.hasBeenMoved</code> to true
+     */
+    public void wasMoved() {
+        hasBeenMoved = true;
     }
 
     public String toString() {

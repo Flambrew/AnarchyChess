@@ -23,6 +23,16 @@ public class Board {
     }
 
     /**
+     * Copy constructor for <code>Board</code> 
+     * 
+     * @param other
+     */
+    public Board(Board other) {
+        for (int i = 0; i < board.length; i++)
+            board[i] = new Piece(other.board[i]);
+    }
+
+    /**
      * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
      * matching a given array of positions
      *
@@ -79,6 +89,7 @@ public class Board {
     public void movePiece(int from, int to) {
         board[to] = board[from];
         board[from] = null;
+        board[to].wasMoved();
     }
 
     private void boardSetup() {

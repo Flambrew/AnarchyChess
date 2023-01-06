@@ -37,7 +37,7 @@ public class Rules {
         }
     }
 
-    // TODO:rules
+    // TODO:rules-B,R,K
 
     private boolean pawn(int from, int to) {
         // TODO: Pawn: En Passant
@@ -77,7 +77,7 @@ public class Rules {
     }
 
     private boolean queen(int from, int to) {
-        return false;
+        return rook(from, to) || bishop(from, to);
     }
 
     private boolean king(int from, int to) {
@@ -91,7 +91,17 @@ public class Rules {
         return false;
     }
 
-    private boolean evalSlide(int from, int to, int... directions) {
+    // alg - a=(from%8+from/8);b=(to%8+to/8);a%2==b%2&&(a%7==b%7||a%9==b%9)
+    private boolean evalSlide(int from, int to, Axis axis) {
+        if (axis == Axis.CARDINAL) {
+            if (from / 8 == to / 8 || from % 8 == to % 8) {
+                
+            }
+        } else if (axis == Axis.DIAGONAL) {
+            if ((from / 8 + from % 8) % 2 == (to / 8 + to % 8) % 2 && (from % 7 == to % 7 || from % 9 == to % 9)) {
+
+            }
+        }
         return false;
     }
 }
