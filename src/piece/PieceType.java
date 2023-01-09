@@ -10,7 +10,8 @@ public enum PieceType {
     BISHOP(3),
     ROOK(4),
     QUEEN(5),
-    KING(6);
+    KING(6),
+    KNOOK(7);
 
     int num;
 

@@ -8,6 +8,8 @@ public class Piece {
     private final PieceColor COLOR;
     private final PieceType TYPE;
 
+    private int letter;
+    private int number;
     private boolean hasBeenMoved;
 
     /**
