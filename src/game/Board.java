@@ -14,7 +14,6 @@ import src.piece.PType;
 public class Board {
 
     private final ArrayList<Piece> board = new ArrayList<>();
-
     private final Piece[] DEFAULT_BOARD_SETUP = {
             new Piece(PColor.WHITE, PType.ROOK, PRow._1, PColumn.A),
             new Piece(PColor.WHITE, PType.KNIGHT, PRow._1, PColumn.B),
@@ -54,18 +53,17 @@ public class Board {
     };
 
     /**
-     * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
-     * matching a given array of positions, if empty, matching the official chess
-     * piece starting positions
+     * Initializes a new Board with preset Piece objects matching a given array of
+     * positions, if empty, matching the official chess piece starting positions
      *
-     * @param pieceList 2D array of <code>Piece</code>
+     * @param pieceList 2D array of Piece
      */
     public Board(Piece... pieceList) {
         setup(pieceList);
     }
 
     /**
-     * Copy constructor for <code>Board</code>
+     * Copy constructor for Board
      * 
      * @param other
      */
@@ -74,6 +72,12 @@ public class Board {
             board.add(piece);
     }
 
+    /**
+     * Return ArrayList of all Pieces of specified PType
+     * 
+     * @param type
+     * @return ArrayList of Piece
+     */
     public ArrayList<Piece> getAll(PType type) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
@@ -82,6 +86,12 @@ public class Board {
         return all;
     }
 
+    /**
+     * Return ArrayList of all Pieces of specified PColor
+     * 
+     * @param color
+     * @return ArrayList of Piece
+     */
     public ArrayList<Piece> getAll(PColor color) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
@@ -90,11 +100,16 @@ public class Board {
         return all;
     }
 
+    /**
+     * Returns the Board.board ArrayList
+     * 
+     * @return ArrayList of Piece
+     */
     public ArrayList<Piece> getBoard() {
         return board;
     }
 
-    public void setup(Piece... pieceList) {
+    private void setup(Piece... pieceList) {
         if (pieceList == null || pieceList.length == 0)
             pieceList = DEFAULT_BOARD_SETUP;
         for (Piece piece : pieceList)
