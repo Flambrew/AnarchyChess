@@ -10,7 +10,7 @@ import src.piece.attributes.Type;
  */
 public class Piece {
 
-    private final  Color COLOR;
+    private final Color COLOR;
     private final Type TYPE;
 
     private Row row;

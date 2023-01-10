@@ -4,7 +4,6 @@ package src.piece.attributes;
  * @author Andrew Matherne
  */
 public enum Type {
-    NONE(0),
     PAWN(1),
     KNIGHT(2),
     BISHOP(3),

@@ -119,7 +119,7 @@ public class Board {
      * 
      * @return ArrayList of Piece
      */
-    public ArrayList<Piece> getBoard() {
+    public ArrayList<Piece> board() {
         return board;
     }
 
