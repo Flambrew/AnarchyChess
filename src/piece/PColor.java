@@ -8,7 +8,7 @@ public enum PColor {
     WHITE(1),
     BLACK(-1);
     
-    int sign;
+    public int sign;
 
     PColor(int sign) {
         this.sign = sign;

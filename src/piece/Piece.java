@@ -98,6 +98,6 @@ public class Piece {
      * @return a string representation of the object.
      */
     public String toString() {
-        return Integer.toString(COLOR.sign * TYPE.num);
+        return (COLOR.sign * TYPE.num > 0 ? " " : "") + Integer.toString(COLOR.sign * TYPE.num);
     }
 }

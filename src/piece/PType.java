@@ -13,7 +13,7 @@ public enum PType {
     KING(6),
     KNOOK(7);
 
-    int num;
+    public int num;
 
     PType(int num) {
         this.num = num;
