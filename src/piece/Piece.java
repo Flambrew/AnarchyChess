@@ -5,53 +5,77 @@ package src.piece;
  */
 public class Piece {
 
-    private final PieceColor COLOR;
-    private final PieceType TYPE;
+    private final PColor COLOR;
+    private final PType TYPE;
 
-    private int letter;
-    private int number;
+    private PRow row;
+    private PColumn column;
+
     private boolean hasBeenMoved;
 
     /**
-     * Initializes a new <code>Piece</code> given a <code>PieceColor</code> and
-     * <code>PieceType</code>
+     * Initializes a new <code>Piece</code>
      * 
      * @param color
      * @param type
+     * @param row
+     * @param column
      */
-    public Piece(PieceColor color, PieceType type) {
+    public Piece(PColor color, PType type, PRow row, PColumn column) {
         this.COLOR = color;
         this.TYPE = type;
+        this.row = row;
+        this.column = column;
     }
 
     /**
-     * Copy constructor for <code>Piece</code>
+     * Copies a <code>Piece</code>
      * 
      * @param other
      */
     public Piece(Piece other) {
         this.COLOR = other.COLOR;
         this.TYPE = other.TYPE;
+        this.row = other.row;
+        this.column = other.column;
     }
 
     /**
-     * Returns the <code>PieceColor</code> attribute of the <code>Piece</code>
+     * Returns the <code>PColor</code> attribute of the <code>Piece</code>
      * 
-     * @return <code>PieceColor</code>
+     * @return <code>PColor</code>
      */
-    public PieceColor getColor() {
+    public PColor getColor() {
         return COLOR;
     }
 
     /**
-     * Returns the <code>PieceType</code> attribute of the <code>Piece</code>
+     * Returns the <code>PType</code> attribute of the <code>Piece</code>
      * 
-     * @return <code>PieceType</code>
+     * @return <code>PType</code>
      */
-    public PieceType getType() {
+    public PType getType() {
         return TYPE;
     }
-    
+
+    /**
+     * Returns the <code>PRow</code> attribute of the <code>Piece</code>
+     * 
+     * @return <code>PRow</code>
+     */
+    public PRow getRow() {
+        return row;
+    }
+
+    /**
+     * Returns the <code>PColumn</code> attribute of the <code>Piece</code>
+     * 
+     * @return <code>PColumn</code>
+     */
+    public PColumn getColumn() {
+        return column;
+    }
+
     /**
      * Returns whether the <code>Piece</code> has been moved or not
      * 
@@ -60,7 +84,7 @@ public class Piece {
     public boolean hasBeenMoved() {
         return hasBeenMoved;
     }
-    
+
     /**
      * Sets <code>Piece.hasBeenMoved</code> to true
      */
@@ -68,6 +92,11 @@ public class Piece {
         hasBeenMoved = true;
     }
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return a string representation of the object.
+     */
     public String toString() {
         return Integer.toString(COLOR.sign * TYPE.num);
     }

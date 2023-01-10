@@ -1,11 +1,10 @@
 package src.game;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import src.piece.Piece;
-import src.piece.PieceColor;
-import src.piece.PieceType;
+import src.piece.PColor;
+import src.piece.PType;
 
 /**
  * @author Andrew Matherne
@@ -16,14 +15,17 @@ public class Board {
 
     /**
      * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
-     * matching the official chess piece starting positions
+     * matching a given array of positions, if empty, matching the official chess
+     * piece starting positions
+     *
+     * @param pieceList 2D array of <code>Piece</code>
      */
-    public Board() {
-        boardSetup();
+    public Board(Piece... pieceList) {
+        boardSetup(pieceList);
     }
 
     /**
-     * Copy constructor for <code>Board</code> 
+     * Copy constructor for <code>Board</code>
      * 
      * @param other
      */
@@ -32,33 +34,23 @@ public class Board {
             board.add(piece);
     }
 
-    /**
-     * Initializes a new <code>Board</code> with preset <code>Piece</code> objects
-     * matching a given array of positions
-     *
-     * @param pieceList 2D array of <code>Piece</code>
-     */
-    public Board(Piece[] pieceList) {
-        boardSetup(pieceList);
-    }
-
-    public Piece[] getAll(PieceType type) {
+    public ArrayList<Piece> getAll(PType type) {
         return null;
     }
 
-    public Piece[] getAll(PieceColor color) {
+    public ArrayList<Piece> getAll(PColor color) {
         return null;
     }
 
-    public Piece[] getAll(PieceType type, PieceColor color) {
+    public ArrayList<Piece> getAll(PType type, PColor color) {
         return null;
     }
 
-    public Piece[] getBoard() {
+    public ArrayList<Piece> getBoard() {
         return null;
     }
 
-    public void boardSetup(Piece[] pieceList) {
+    public void boardSetup(Piece... pieceList) {
         // empty is default
     }
 

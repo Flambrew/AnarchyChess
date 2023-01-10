@@ -1,7 +1,7 @@
 package src.game;
 
-import src.piece.PieceColor;
-import src.piece.PieceType;
+import src.piece.PColor;
+import src.piece.PType;
 
 /**
  * @author Andrew Matherne
@@ -17,24 +17,6 @@ public class Rules {
     }
 
     public boolean legalMove(int from, int to) throws Exception {
-        if (board.getPiece(from) == null || board.getPiece(from).getType() == PieceType.NONE)
-            return false;
-        switch (board.getPiece(from).getType()) {
-            case PAWN:
-                return pawn(from, to);
-            case BISHOP:
-                return knight(from, to);
-            case KING:
-                return bishop(from, to);
-            case KNIGHT:
-                return rook(from, to);
-            case QUEEN:
-                return queen(from, to);
-            case ROOK:
-                return king(from, to);
-            default:
-                throw new Exception("Move Legality not defined for piece: " + board.getPiece(from).getType());
-        }
     }
 
     // TODO:rules-B,R,K
@@ -43,17 +25,17 @@ public class Rules {
         // TODO: Pawn: En Passant
         if (board.getPiece(from).getColor() == board.getPiece(to).getColor())
             return false;
-        if (board.getPiece(from).getColor() == PieceColor.WHITE) {
-            if (board.getPiece(to).getColor() == PieceColor.NONE) {
-                if (from / 8 == 6 && board.getPiece(from - 8).getType() == PieceType.NONE)
+        if (board.getPiece(from).getColor() == PColor.WHITE) {
+            if (board.getPiece(to).getColor() == PColor.NONE) {
+                if (from / 8 == 6 && board.getPiece(from - 8).getType() == PType.NONE)
                     return evalMove(from, to, -8, -16);
                 return evalMove(from, to, -8);
             } else {
                 return evalMove(from, to, -9, -7);
             }
         } else {
-            if (board.getPiece(to).getColor() == PieceColor.NONE) {
-                if (from / 8 == 6 && board.getPiece(from + 8).getType() == PieceType.NONE)
+            if (board.getPiece(to).getColor() == PColor.NONE) {
+                if (from / 8 == 6 && board.getPiece(from + 8).getType() == PType.NONE)
                     return evalMove(from, to, 8, 16);
                 return evalMove(from, to, 8);
             } else {

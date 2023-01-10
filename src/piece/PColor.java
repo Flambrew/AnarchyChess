@@ -3,14 +3,14 @@ package src.piece;
 /**
  * @author Andrew Matherne
  */
-public enum PieceColor {
+public enum PColor {
     NONE(0),
     WHITE(1),
     BLACK(-1);
     
     int sign;
 
-    PieceColor(int sign) {
+    PColor(int sign) {
         this.sign = sign;
     }
 }

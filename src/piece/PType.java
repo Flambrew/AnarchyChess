@@ -3,7 +3,7 @@ package src.piece;
 /**
  * @author Andrew Matherne
  */
-public enum PieceType {
+public enum PType {
     NONE(0),
     PAWN(1),
     KNIGHT(2),
@@ -15,7 +15,7 @@ public enum PieceType {
 
     int num;
 
-    PieceType(int num) {
+    PType(int num) {
         this.num = num;
     }
 }
