@@ -73,6 +73,20 @@ public class Board {
     }
 
     /**
+     * Return the Piece at the specified PRow and PColumn
+     * 
+     * @param row
+     * @param column
+     * @return Piece
+     */
+    public Piece get(PRow row, PColumn column) {
+        for (Piece piece : board)
+            if (piece.getRow() == row && piece.getColumn() == column)
+                return piece;
+        return null;
+    }
+
+    /**
      * Return ArrayList of all Pieces of specified PType
      * 
      * @param type
@@ -118,18 +132,14 @@ public class Board {
 
     public String toString() {
         String out = "";
-        for (int i = 7; i >= 0; i--, out += "\n") {
-            for (int j = 0; j < 8; j++, out += "\t")
-                for (Piece piece : board) {
+        for (int i = 7; i >= 0; i--, out += "\n")
+            for (int j = 0; j < 8; j++)
+                for (Piece piece : board)
                     if (piece.getRow().num == i && piece.getColumn().num == j) {
-                        System.out.print(piece + " ");
+                        out += piece + " ";
                         break;
-                    }
-                    if (piece == board.get(board.size() - 1))
-                        System.out.print(" * ");
-                }
-            System.out.println();
-        }
-        return out;
+                    } else if (piece == board.get(board.size() - 1))
+                        out += " * ";
+        return out.substring(0, out.length() - 1);
     }
 }
