@@ -1,9 +1,9 @@
-package src.piece;
+package src.piece.attributes;
 
 /**
  * @author Andrew Matherne
  */
-public enum PRow {
+public enum Row {
     _1(0),
     _2(1),
     _3(2),
@@ -15,7 +15,7 @@ public enum PRow {
     
     public int num;
 
-    PRow(int num) {
+    Row(int num) {
         this.num = num;
     }
 }

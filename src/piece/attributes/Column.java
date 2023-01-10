@@ -1,9 +1,9 @@
-package src.piece;
+package src.piece.attributes;
 
 /**
  * @author Andrew Matherne
  */
-public enum PColumn {
+public enum Column {
     A(0),
     B(1),
     C(2),
@@ -15,7 +15,7 @@ public enum PColumn {
     
     public int num;
 
-    PColumn(int num) {
+    Column(int num) {
         this.num = num;
     }
 }

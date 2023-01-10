@@ -1,9 +1,9 @@
-package src.piece;
+package src.piece.attributes;
 
 /**
  * @author Andrew Matherne
  */
-public enum PType {
+public enum Type {
     NONE(0),
     PAWN(1),
     KNIGHT(2),
@@ -15,7 +15,7 @@ public enum PType {
 
     public int num;
 
-    PType(int num) {
+    Type(int num) {
         this.num = num;
     }
 }

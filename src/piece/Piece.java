@@ -1,15 +1,20 @@
 package src.piece;
 
+import src.piece.attributes.Color;
+import src.piece.attributes.Column;
+import src.piece.attributes.Row;
+import src.piece.attributes.Type;
+
 /**
  * @author Andrew Matherne
  */
 public class Piece {
 
-    private final PColor COLOR;
-    private final PType TYPE;
+    private final  Color COLOR;
+    private final Type TYPE;
 
-    private PRow row;
-    private PColumn column;
+    private Row row;
+    private Column column;
 
     private boolean hasBeenMoved;
 
@@ -21,7 +26,7 @@ public class Piece {
      * @param row
      * @param column
      */
-    public Piece(PColor color, PType type, PRow row, PColumn column) {
+    public Piece(Color color, Type type, Row row, Column column) {
         this.COLOR = color;
         this.TYPE = type;
         this.row = row;
@@ -45,7 +50,7 @@ public class Piece {
      * 
      * @return <code>PColor</code>
      */
-    public PColor getColor() {
+    public Color color() {
         return COLOR;
     }
 
@@ -54,7 +59,7 @@ public class Piece {
      * 
      * @return <code>PType</code>
      */
-    public PType getType() {
+    public Type type() {
         return TYPE;
     }
 
@@ -63,7 +68,7 @@ public class Piece {
      * 
      * @return <code>PRow</code>
      */
-    public PRow getRow() {
+    public Row row() {
         return row;
     }
 
@@ -72,7 +77,7 @@ public class Piece {
      * 
      * @return <code>PColumn</code>
      */
-    public PColumn getColumn() {
+    public Column column() {
         return column;
     }
 

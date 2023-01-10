@@ -3,10 +3,10 @@ package src.game;
 import java.util.ArrayList;
 
 import src.piece.Piece;
-import src.piece.PColor;
-import src.piece.PColumn;
-import src.piece.PRow;
-import src.piece.PType;
+import src.piece.attributes.Color;
+import src.piece.attributes.Column;
+import src.piece.attributes.Row;
+import src.piece.attributes.Type;
 
 /**
  * @author Andrew Matherne
@@ -15,41 +15,41 @@ public class Board {
 
     private final ArrayList<Piece> board = new ArrayList<>();
     private final Piece[] DEFAULT_BOARD_SETUP = {
-            new Piece(PColor.WHITE, PType.ROOK, PRow._1, PColumn.A),
-            new Piece(PColor.WHITE, PType.KNIGHT, PRow._1, PColumn.B),
-            new Piece(PColor.WHITE, PType.BISHOP, PRow._1, PColumn.C),
-            new Piece(PColor.WHITE, PType.QUEEN, PRow._1, PColumn.D),
-            new Piece(PColor.WHITE, PType.KING, PRow._1, PColumn.E),
-            new Piece(PColor.WHITE, PType.BISHOP, PRow._1, PColumn.F),
-            new Piece(PColor.WHITE, PType.KNIGHT, PRow._1, PColumn.G),
-            new Piece(PColor.WHITE, PType.ROOK, PRow._1, PColumn.H),
+            new Piece(Color.WHITE, Type.ROOK, Row._1, Column.A),
+            new Piece(Color.WHITE, Type.KNIGHT, Row._1, Column.B),
+            new Piece(Color.WHITE, Type.BISHOP, Row._1, Column.C),
+            new Piece(Color.WHITE, Type.QUEEN, Row._1, Column.D),
+            new Piece(Color.WHITE, Type.KING, Row._1, Column.E),
+            new Piece(Color.WHITE, Type.BISHOP, Row._1, Column.F),
+            new Piece(Color.WHITE, Type.KNIGHT, Row._1, Column.G),
+            new Piece(Color.WHITE, Type.ROOK, Row._1, Column.H),
 
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.A),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.B),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.C),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.D),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.E),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.F),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.G),
-            new Piece(PColor.WHITE, PType.PAWN, PRow._2, PColumn.H),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.A),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.B),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.C),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.D),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.E),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.F),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.G),
+            new Piece(Color.WHITE, Type.PAWN, Row._2, Column.H),
 
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.A),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.B),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.C),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.D),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.E),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.F),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.G),
-            new Piece(PColor.BLACK, PType.PAWN, PRow._7, PColumn.H),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.A),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.B),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.C),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.D),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.E),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.F),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.G),
+            new Piece(Color.BLACK, Type.PAWN, Row._7, Column.H),
 
-            new Piece(PColor.BLACK, PType.ROOK, PRow._8, PColumn.A),
-            new Piece(PColor.BLACK, PType.KNIGHT, PRow._8, PColumn.B),
-            new Piece(PColor.BLACK, PType.BISHOP, PRow._8, PColumn.C),
-            new Piece(PColor.BLACK, PType.QUEEN, PRow._8, PColumn.D),
-            new Piece(PColor.BLACK, PType.KING, PRow._8, PColumn.E),
-            new Piece(PColor.BLACK, PType.BISHOP, PRow._8, PColumn.F),
-            new Piece(PColor.BLACK, PType.KNIGHT, PRow._8, PColumn.G),
-            new Piece(PColor.BLACK, PType.ROOK, PRow._8, PColumn.H)
+            new Piece(Color.BLACK, Type.ROOK, Row._8, Column.A),
+            new Piece(Color.BLACK, Type.KNIGHT, Row._8, Column.B),
+            new Piece(Color.BLACK, Type.BISHOP, Row._8, Column.C),
+            new Piece(Color.BLACK, Type.QUEEN, Row._8, Column.D),
+            new Piece(Color.BLACK, Type.KING, Row._8, Column.E),
+            new Piece(Color.BLACK, Type.BISHOP, Row._8, Column.F),
+            new Piece(Color.BLACK, Type.KNIGHT, Row._8, Column.G),
+            new Piece(Color.BLACK, Type.ROOK, Row._8, Column.H)
     };
 
     /**
@@ -79,9 +79,9 @@ public class Board {
      * @param column
      * @return Piece
      */
-    public Piece get(PRow row, PColumn column) {
+    public Piece get(Row row, Column column) {
         for (Piece piece : board)
-            if (piece.getRow() == row && piece.getColumn() == column)
+            if (piece.row() == row && piece.column() == column)
                 return piece;
         return null;
     }
@@ -92,10 +92,10 @@ public class Board {
      * @param type
      * @return ArrayList of Piece
      */
-    public ArrayList<Piece> getAll(PType type) {
+    public ArrayList<Piece> getAll(Type type) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
-            if (piece.getType() == type)
+            if (piece.type() == type)
                 all.add(piece);
         return all;
     }
@@ -106,10 +106,10 @@ public class Board {
      * @param color
      * @return ArrayList of Piece
      */
-    public ArrayList<Piece> getAll(PColor color) {
+    public ArrayList<Piece> getAll(Color color) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
-            if (piece.getColor() == color)
+            if (piece.color() == color)
                 all.add(piece);
         return all;
     }
@@ -135,7 +135,7 @@ public class Board {
         for (int i = 7; i >= 0; i--, out += "\n")
             for (int j = 0; j < 8; j++)
                 for (Piece piece : board)
-                    if (piece.getRow().num == i && piece.getColumn().num == j) {
+                    if (piece.row().num == i && piece.column().num == j) {
                         out += piece + " ";
                         break;
                     } else if (piece == board.get(board.size() - 1))
