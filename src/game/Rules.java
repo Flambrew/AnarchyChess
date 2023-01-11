@@ -12,6 +12,28 @@ import src.utils.Vector2;
 public class Rules {
 
     private static boolean anarchy = false;
+    private static final Vector2[] L_SHAPES = new Vector2[] {
+            new Vector2(1, 2),
+            new Vector2(1, -2),
+            new Vector2(-1, 2),
+            new Vector2(-1, -2),
+            new Vector2(2, 1),
+            new Vector2(2, -1),
+            new Vector2(-2, 1),
+            new Vector2(-2, -1)
+    };
+    private static final Vector2[] DIAGONALS = new Vector2[] {
+            new Vector2(1, 1),
+            new Vector2(1, -1),
+            new Vector2(-1, 1),
+            new Vector2(-1, -1)
+    };
+    private static final Vector2[] ORTHAGONALS = new Vector2[] {
+            new Vector2(0, 1),
+            new Vector2(0, -1),
+            new Vector2(1, 0),
+            new Vector2(-1, 0)
+    };
 
     /**
      * Used to set Rules.anarchy.
@@ -78,18 +100,10 @@ public class Rules {
     private static ArrayList<Move> getKnightMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
 
+        directMove( moves, pieces, piece);
+        
         // L Shapes
-        Vector2[] lShapes = new Vector2[] {
-                new Vector2(1, 2),
-                new Vector2(1, -2),
-                new Vector2(-1, 2),
-                new Vector2(-1, -2),
-                new Vector2(2, 1),
-                new Vector2(2, -1),
-                new Vector2(-2, 1),
-                new Vector2(-2, -1)
-        };
-        for (Vector2 move : lShapes)
+        for (Vector2 move : L_SHAPES)
             try {
                 if (pieces[piece.ROW.Y + move.Y][piece.COLUMN.X + move.X] == null)
                     moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y), piece.COLUMN.move(move.X)));
@@ -103,14 +117,8 @@ public class Rules {
         ArrayList<Move> moves = new ArrayList<Move>();
 
         // Diagonals
-        Vector2[] directions = new Vector2[] {
-                new Vector2(1, 1),
-                new Vector2(1, -1),
-                new Vector2(-1, 1),
-                new Vector2(-1, -1)
-        };
-        for (Vector2 move : directions) {
-            for (int i = 1;; i++) {
+        for (Vector2 move : DIAGONALS)
+            for (int i = 1;; i++)
                 try {
                     if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
                         moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
@@ -120,8 +128,6 @@ public class Rules {
                 } catch (Exception e) {
                     break;
                 }
-            }
-        }
 
         // TODO: Bishop 'Il Vaticano'
 
@@ -132,14 +138,8 @@ public class Rules {
         ArrayList<Move> moves = new ArrayList<Move>();
 
         // Orthagonals
-        Vector2[] directions = new Vector2[] {
-                new Vector2(0, 1),
-                new Vector2(0, -1),
-                new Vector2(1, 0),
-                new Vector2(-1, 0)
-        };
-        for (Vector2 move : directions) {
-            for (int i = 1;; i++) {
+        for (Vector2 move : ORTHAGONALS)
+            for (int i = 1;; i++)
                 try {
                     if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
                         moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
@@ -149,8 +149,6 @@ public class Rules {
                 } catch (Exception e) {
                     break;
                 }
-            }
-        }
 
         // TODO: Rook Castling
 
@@ -181,6 +179,10 @@ public class Rules {
         // TODO: King 'Pawn Push'
         // TODO: King No C2
         return moves;
+    }
+
+    private static void directMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece) {
+        
     }
 
     private static Piece[][] generateBoardArray(ArrayList<Piece> board) {
