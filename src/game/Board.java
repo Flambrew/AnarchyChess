@@ -135,7 +135,7 @@ public class Board {
         for (int i = 7; i >= 0; i--, out += "\n")
             for (int j = 0; j < 8; j++)
                 for (Piece piece : board)
-                    if (piece.ROW.num == i && piece.COLUMN.num == j) {
+                    if (piece.ROW.Y == i && piece.COLUMN.X == j) {
                         out += piece + " ";
                         break;
                     } else if (piece == board.get(board.size() - 1))

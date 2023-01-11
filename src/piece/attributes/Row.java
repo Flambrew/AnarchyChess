@@ -13,9 +13,9 @@ public enum Row {
     _7(6),
     _8(7);
     
-    public int num;
+    public final int Y;
 
-    Row(int num) {
-        this.num = num;
+    Row(int n) {
+        this.Y = n;
     }
 }

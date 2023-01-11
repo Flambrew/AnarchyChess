@@ -13,9 +13,9 @@ public enum Column {
     G(6),
     H(7);
     
-    public int num;
+    public final int X;
 
-    Column(int num) {
-        this.num = num;
+    Column(int n) {
+        this.X = n;
     }
 }

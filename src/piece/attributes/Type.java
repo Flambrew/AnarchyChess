@@ -12,9 +12,9 @@ public enum Type {
     KING(6),
     KNOOK(7);
 
-    public int num;
+    public final int num;
 
-    Type(int num) {
-        this.num = num;
+    Type(int n) {
+        this.num = n;
     }
 }

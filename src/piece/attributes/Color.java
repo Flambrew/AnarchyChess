@@ -7,7 +7,7 @@ public enum Color {
     WHITE(1),
     BLACK(-1);
     
-    public int sign;
+    public final int sign;
 
     Color(int sign) {
         this.sign = sign;
