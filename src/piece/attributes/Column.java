@@ -19,6 +19,12 @@ public enum Column {
         this.X = n;
     }
 
+    /**
+     * Cycles the enum by n.
+     * 
+     * @param n
+     * @return Column
+     */
     public Column move(int n) {
         Column column = this;
         for (int i = 0; i < (n % 8 + 8) % 8; i++)

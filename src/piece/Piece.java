@@ -19,7 +19,7 @@ public class Piece {
     private boolean hasBeenMoved;
 
     /**
-     * Initializes a new <code>Piece</code>
+     * Initializes a new Piece.
      * 
      * @param color
      * @param type
@@ -34,7 +34,7 @@ public class Piece {
     }
 
     /**
-     * Copies a <code>Piece</code>
+     * Copy constructor for Piece.
      * 
      * @param other
      */
@@ -46,7 +46,7 @@ public class Piece {
     }
 
     /**
-     * Returns whether the <code>Piece</code> has been moved or not
+     * Returns whether the Piece has been moved or not.
      * 
      * @return boolean
      */
@@ -55,17 +55,12 @@ public class Piece {
     }
 
     /**
-     * Sets <code>Piece.hasBeenMoved</code> to true
+     * Sets Piece.hasBeenMoved to true.
      */
     public void wasMoved() {
         hasBeenMoved = true;
     }
-
-    /**
-     * Returns a string representation of the object.
-     *
-     * @return a string representation of the object.
-     */
+    
     public String toString() {
         return (COLOR.sign * TYPE.num > 0 ? " " : "") + Integer.toString(COLOR.sign * TYPE.num);
     }

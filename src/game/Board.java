@@ -54,7 +54,7 @@ public class Board {
 
     /**
      * Initializes a new Board with preset Piece objects matching a given array of
-     * positions, if empty, matching the official chess piece starting positions
+     * positions, if empty, matching the official chess piece starting positions.
      *
      * @param pieceList 2D array of Piece
      */
@@ -63,7 +63,7 @@ public class Board {
     }
 
     /**
-     * Copy constructor for Board
+     * Copy constructor for Board.
      * 
      * @param other
      */
@@ -73,7 +73,7 @@ public class Board {
     }
 
     /**
-     * Return the Piece at the specified PRow and PColumn
+     * Return the Piece at the specified Row and Column.
      * 
      * @param row
      * @param column
@@ -87,7 +87,7 @@ public class Board {
     }
 
     /**
-     * Return ArrayList of all Pieces of specified PType
+     * Return ArrayList of all Pieces of specified Type.
      * 
      * @param type
      * @return ArrayList of Piece
@@ -101,7 +101,7 @@ public class Board {
     }
 
     /**
-     * Return ArrayList of all Pieces of specified PColor
+     * Return ArrayList of all Pieces of specified Color.
      * 
      * @param color
      * @return ArrayList of Piece
@@ -115,7 +115,7 @@ public class Board {
     }
 
     /**
-     * Returns the Board.board ArrayList
+     * Returns the Board.board ArrayList.
      * 
      * @return ArrayList of Piece
      */

@@ -19,6 +19,12 @@ public enum Row {
         this.Y = n;
     }
 
+    /**
+     * Cycles the enum by n.
+     * 
+     * @param n
+     * @return Row
+     */
     public Row move(int n) {
         Row row = this;
         for (int i = 0; i < (n % 8 + 8) % 8; i++)

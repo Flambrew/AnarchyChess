@@ -13,12 +13,26 @@ public class Rules {
 
     private static boolean anarchy = false;
 
+    /**
+     * Used to set Rules.anarchy.
+     * Does not change if no value is supplied.
+     * Returns the current state.
+     * 
+     * @param state
+     * @return boolean
+     */
     public static boolean anarchy(boolean... state) {
         if (state == null || state.length != 1)
             return anarchy;
         return anarchy = state[0];
     }
 
+    /**
+     * Returns an ArrayList of Moves representing every legal move on the board.
+     * 
+     * @param board
+     * @return ArrayList of Move
+     */
     public static ArrayList<Move> getLegalMoves(ArrayList<Piece> board) {
         ArrayList<Move> moves = new ArrayList<Move>();
         Piece[][] pieces = generateBoardArray(board);
@@ -53,11 +67,11 @@ public class Rules {
 
     private static ArrayList<Move> getPawnMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
-        // Capture
-        // Move
-        // Push
-        // Promotion
-        // Passant
+        // TODO: Pawn Capture
+        // TODO: Pawn Move
+        // TODO: Pawn Push
+        // TODO: Pawn Promotion
+        // TODO: Pawn Passant
         return moves;
     }
 
@@ -80,7 +94,6 @@ public class Rules {
                 if (pieces[piece.ROW.Y + move.Y][piece.COLUMN.X + move.X] == null)
                     moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y), piece.COLUMN.move(move.X)));
             } catch (Exception e) {
-                // System.out.println(e.getStackTrace());
             }
 
         return moves;
@@ -89,7 +102,7 @@ public class Rules {
     private static ArrayList<Move> getBishopMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
 
-        // Diagonal x4
+        // Diagonals
         Vector2[] directions = new Vector2[] {
                 new Vector2(1, 1),
                 new Vector2(1, -1),
@@ -110,14 +123,15 @@ public class Rules {
             }
         }
 
-        // 'Il Vaticano'
+        // TODO: Bishop 'Il Vaticano'
+
         return moves;
     }
 
     private static ArrayList<Move> getRookMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
 
-        // Orthagonal x4
+        // Orthagonals
         Vector2[] directions = new Vector2[] {
                 new Vector2(0, 1),
                 new Vector2(0, -1),
@@ -138,7 +152,7 @@ public class Rules {
             }
         }
 
-        // Castling
+        // TODO: Rook Castling
 
         return moves;
     }
@@ -155,17 +169,17 @@ public class Rules {
         moves.addAll(getBishopMoves(piece, pieces));
         moves.addAll(getRookMoves(piece, pieces));
 
-        // 'Beta Decay'
+        // TODO: Queen 'Beta Decay'
         return moves;
     }
 
     private static ArrayList<Move> getKingMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
-        // Move
-        // Castle
+        // TODO: King Move
+        // TODO: King Castle
 
-        // 'Pawn Push'
-        // No C2
+        // TODO: King 'Pawn Push'
+        // TODO: King No C2
         return moves;
     }
 

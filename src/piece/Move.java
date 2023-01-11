@@ -4,6 +4,9 @@ import src.piece.attributes.Column;
 import src.piece.attributes.Row;
 import src.utils.Vector2;
 
+/**
+ * @author Andrew Matherne
+ */
 public class Move {
 
     public final Row ROW;
@@ -11,6 +14,14 @@ public class Move {
 
     public final Vector2 TRANSFORM;
 
+    /**
+     * Initializes a new Move.
+     * 
+     * @param startRow
+     * @param startColumn
+     * @param endRow
+     * @param endColumn
+     */
     public Move(Row startRow, Column startColumn, Row endRow, Column endColumn) {
         this.ROW = startRow;
         this.COLUMN = startColumn;
