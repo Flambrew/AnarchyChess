@@ -10,11 +10,11 @@ import src.piece.attributes.Type;
  */
 public class Piece {
 
-    private final Color COLOR;
-    private final Type TYPE;
+    public final Color COLOR;
+    public final Type TYPE;
 
-    private Row row;
-    private Column column;
+    public Row ROW;
+    public Column COLUMN;
 
     private boolean hasBeenMoved;
 
@@ -29,8 +29,8 @@ public class Piece {
     public Piece(Color color, Type type, Row row, Column column) {
         this.COLOR = color;
         this.TYPE = type;
-        this.row = row;
-        this.column = column;
+        this.ROW = row;
+        this.COLUMN = column;
     }
 
     /**
@@ -41,44 +41,8 @@ public class Piece {
     public Piece(Piece other) {
         this.COLOR = other.COLOR;
         this.TYPE = other.TYPE;
-        this.row = other.row;
-        this.column = other.column;
-    }
-
-    /**
-     * Returns the <code>PColor</code> attribute of the <code>Piece</code>
-     * 
-     * @return <code>PColor</code>
-     */
-    public Color color() {
-        return COLOR;
-    }
-
-    /**
-     * Returns the <code>PType</code> attribute of the <code>Piece</code>
-     * 
-     * @return <code>PType</code>
-     */
-    public Type type() {
-        return TYPE;
-    }
-
-    /**
-     * Returns the <code>PRow</code> attribute of the <code>Piece</code>
-     * 
-     * @return <code>PRow</code>
-     */
-    public Row row() {
-        return row;
-    }
-
-    /**
-     * Returns the <code>PColumn</code> attribute of the <code>Piece</code>
-     * 
-     * @return <code>PColumn</code>
-     */
-    public Column column() {
-        return column;
+        this.ROW = other.ROW;
+        this.COLUMN = other.COLUMN;
     }
 
     /**

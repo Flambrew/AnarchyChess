@@ -81,7 +81,7 @@ public class Board {
      */
     public Piece get(Row row, Column column) {
         for (Piece piece : board)
-            if (piece.row() == row && piece.column() == column)
+            if (piece.ROW == row && piece.COLUMN == column)
                 return piece;
         return null;
     }
@@ -95,7 +95,7 @@ public class Board {
     public ArrayList<Piece> getAll(Type type) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
-            if (piece.type() == type)
+            if (piece.TYPE == type)
                 all.add(piece);
         return all;
     }
@@ -109,7 +109,7 @@ public class Board {
     public ArrayList<Piece> getAll(Color color) {
         ArrayList<Piece> all = new ArrayList<Piece>();
         for (Piece piece : board)
-            if (piece.color() == color)
+            if (piece.COLOR == color)
                 all.add(piece);
         return all;
     }
@@ -135,7 +135,7 @@ public class Board {
         for (int i = 7; i >= 0; i--, out += "\n")
             for (int j = 0; j < 8; j++)
                 for (Piece piece : board)
-                    if (piece.row().num == i && piece.column().num == j) {
+                    if (piece.ROW.num == i && piece.COLUMN.num == j) {
                         out += piece + " ";
                         break;
                     } else if (piece == board.get(board.size() - 1))
