@@ -11,15 +11,15 @@ import src.utils.Vector2;
  */
 public class Rules {
 
-    private boolean anarchy = false;
+    private static boolean anarchy = false;
 
-    public boolean anarchy(boolean... state) {
+    public static boolean anarchy(boolean... state) {
         if (state == null || state.length != 1)
             return anarchy;
         return anarchy = state[0];
     }
 
-    public ArrayList<Move> getLegalMoves(ArrayList<Piece> board) {
+    public static ArrayList<Move> getLegalMoves(ArrayList<Piece> board) {
         ArrayList<Move> moves = new ArrayList<Move>();
         Piece[][] pieces = generateBoardArray(board);
         for (Piece piece : board)
@@ -51,7 +51,7 @@ public class Rules {
         return moves;
     }
 
-    private ArrayList<Move> getPawnMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getPawnMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
         // Capture
         // Move
@@ -61,9 +61,10 @@ public class Rules {
         return moves;
     }
 
-    private ArrayList<Move> getKnightMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getKnightMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
 
+        // L Shapes
         Vector2[] lShapes = new Vector2[] {
                 new Vector2(1, 2),
                 new Vector2(1, -2),
@@ -74,41 +75,82 @@ public class Rules {
                 new Vector2(-2, 1),
                 new Vector2(-2, -1)
         };
-
         for (Vector2 move : lShapes)
             try {
                 if (pieces[piece.ROW.Y + move.Y][piece.COLUMN.X + move.X] == null)
-                    // TODO figure out how to back-seek enums || IMPLEMENT A NEXT/INCREMENT FUNCTION
-                    moves.add(new Move(piece.ROW, piece.COLUMN, null, null));
+                    moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y), piece.COLUMN.move(move.X)));
             } catch (Exception e) {
-                System.out.println(e.getStackTrace());
+                // System.out.println(e.getStackTrace());
             }
 
         return moves;
     }
 
-    private ArrayList<Move> getBishopMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getBishopMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
+
         // Diagonal x4
+        Vector2[] directions = new Vector2[] {
+                new Vector2(1, 1),
+                new Vector2(1, -1),
+                new Vector2(-1, 1),
+                new Vector2(-1, -1)
+        };
+        for (Vector2 move : directions) {
+            for (int i = 1;; i++) {
+                try {
+                    if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
+                        moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
+                                piece.COLUMN.move(move.X * i)));
+                    else
+                        break;
+                } catch (Exception e) {
+                    break;
+                }
+            }
+        }
 
         // 'Il Vaticano'
         return moves;
     }
 
-    private ArrayList<Move> getRookMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getRookMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
+
         // Orthagonal x4
+        Vector2[] directions = new Vector2[] {
+                new Vector2(0, 1),
+                new Vector2(0, -1),
+                new Vector2(1, 0),
+                new Vector2(-1, 0)
+        };
+        for (Vector2 move : directions) {
+            for (int i = 1;; i++) {
+                try {
+                    if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
+                        moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
+                                piece.COLUMN.move(move.X * i)));
+                    else
+                        break;
+                } catch (Exception e) {
+                    break;
+                }
+            }
+        }
+
+        // Castling
+
         return moves;
     }
 
-    private ArrayList<Move> getKnookMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getKnookMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
         moves.addAll(getKnightMoves(piece, pieces));
         moves.addAll(getRookMoves(piece, pieces));
         return moves;
     }
 
-    private ArrayList<Move> getQueenMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getQueenMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
         moves.addAll(getBishopMoves(piece, pieces));
         moves.addAll(getRookMoves(piece, pieces));
@@ -117,7 +159,7 @@ public class Rules {
         return moves;
     }
 
-    private ArrayList<Move> getKingMoves(Piece piece, Piece[][] pieces) {
+    private static ArrayList<Move> getKingMoves(Piece piece, Piece[][] pieces) {
         ArrayList<Move> moves = new ArrayList<Move>();
         // Move
         // Castle
@@ -127,7 +169,7 @@ public class Rules {
         return moves;
     }
 
-    private Piece[][] generateBoardArray(ArrayList<Piece> board) {
+    private static Piece[][] generateBoardArray(ArrayList<Piece> board) {
         Piece[][] pieces = new Piece[8][8];
         for (Piece piece : board)
             pieces[7 - piece.ROW.Y][piece.COLUMN.X] = piece;

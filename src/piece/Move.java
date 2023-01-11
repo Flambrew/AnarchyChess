@@ -16,4 +16,8 @@ public class Move {
         this.COLUMN = startColumn;
         this.TRANSFORM = new Vector2(endColumn.X - startColumn.X, endRow.Y - startRow.Y);
     }
+
+    public String toString() {
+        return String.format("(%s%s) -> (%s%s)\n", COLUMN, ROW, COLUMN.move(TRANSFORM.X), ROW.move(TRANSFORM.Y));
+    }
 }

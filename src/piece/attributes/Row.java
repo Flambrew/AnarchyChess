@@ -12,10 +12,40 @@ public enum Row {
     _6(5),
     _7(6),
     _8(7);
-    
+
     public final int Y;
 
     Row(int n) {
         this.Y = n;
+    }
+
+    public Row move(int n) {
+        Row row = this;
+        for (int i = 0; i < (n % 8 + 8) % 8; i++)
+            row = next(row);
+        return row;
+    }
+
+    private Row next(Row row) {
+        switch (row) {
+            case _1:
+                return _2;
+            case _2:
+                return _3;
+            case _3:
+                return _4;
+            case _4:
+                return _5;
+            case _5:
+                return _6;
+            case _6:
+                return _7;
+            case _7:
+                return _8;
+            case _8:
+                return _1;
+            default:
+                return null;
+        }
     }
 }
