@@ -29,7 +29,7 @@ public class MainLoop {
             while (true) { // white turn
                 color = Color.WHITE;
 
-                ArrayList<Move> moves = Rules.getMoves(board, color);
+                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
                 // print(moves);
 
                 Move m = moves.get((int) (Math.random() * moves.size()));
@@ -47,7 +47,7 @@ public class MainLoop {
             while (true) { // black turn
                 color = Color.BLACK;
 
-                ArrayList<Move> moves = Rules.getMoves(board, color);
+                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
                 // print(moves);
 
                 Move m = moves.get((int) (Math.random() * moves.size()));
