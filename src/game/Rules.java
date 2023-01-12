@@ -14,15 +14,14 @@ import src.utils.Vector2;
 public class Rules {
 
     private static boolean anarchy = false;
+
+    // Direct Moves
     private static final Vector2[] WHITE_PAWN_CAPTURES = new Vector2[] {
             new Vector2(1, 1),
             new Vector2(-1, 1)
     };
     private static final Vector2[] WHITE_PAWN_MOVE = new Vector2[] {
             new Vector2(0, 1)
-    };
-    private static final Vector2[] WHITE_PAWN_PUSH = new Vector2[] {
-            new Vector2(0, 2)
     };
     private static final Vector2[] BLACK_PAWN_CAPTURES = new Vector2[] {
             new Vector2(1, -1),
@@ -31,8 +30,13 @@ public class Rules {
     private static final Vector2[] BLACK_PAWN_MOVE = new Vector2[] {
             new Vector2(0, -1)
     };
+
+    // Slide Moves
+    private static final Vector2[] WHITE_PAWN_PUSH = new Vector2[] {
+            new Vector2(0, 1)
+    };
     private static final Vector2[] BLACK_PAWN_PUSH = new Vector2[] {
-            new Vector2(0, -2)
+            new Vector2(0, -1)
     };
     private static final Vector2[] L_SHAPES = new Vector2[] {
             new Vector2(1, 2),
@@ -148,20 +152,21 @@ public class Rules {
 
     private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] directionList,
             boolean habitable, boolean capturable, int distance) {
-        for (Vector2 move : directionList)
+        /*for (Vector2 move : directionList) //TODO: slidemove - this shit brokey
             for (int i = 1; i < distance; i++)
                 try {
                     Piece activePiece = pieces[p.ROW.Y + (move.Y * i)][p.COLUMN.X + (move.X * i)];
                     if (habitable && activePiece == null)
                         moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y * i), p.COLUMN.move(move.X * i)));
-                    else if (capturable && activePiece.COLOR != p.COLOR) {
-                        moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y * i), p.COLUMN.move(move.X * i)));
+                    else if (activePiece.COLOR != p.COLOR) {
+                        if (capturable)
+                            moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y * i), p.COLUMN.move(move.X * i)));
                         break;
                     } else
                         break;
                 } catch (Exception e) {
                     break;
-                }
+                }*/
     }
 
     private static Piece[][] generateBoardArray(ArrayList<Piece> board) {

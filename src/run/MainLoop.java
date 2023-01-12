@@ -28,16 +28,20 @@ public class MainLoop {
 
             while (true) { // white turn
                 color = Color.WHITE;
-
                 ArrayList<Move> moves = Rules.getLegalMoves(board, color);
                 // print(moves);
 
                 Move m = moves.get((int) (Math.random() * moves.size()));
-                for (Piece p : board.board())
+                for (Piece p : board.board()) {
+                    if (p.ROW.Y == m.TRANSFORM.Y && p.COLUMN.X == m.TRANSFORM.X) {
+                        board.board().remove(p);
+                        break;
+                    }
                     if (p.ROW == m.ROW && p.COLUMN == m.COLUMN) {
                         p.move(m);
                         break;
                     }
+                }
 
                 break;
             }
@@ -46,7 +50,6 @@ public class MainLoop {
 
             while (true) { // black turn
                 color = Color.BLACK;
-
                 ArrayList<Move> moves = Rules.getLegalMoves(board, color);
                 // print(moves);
 

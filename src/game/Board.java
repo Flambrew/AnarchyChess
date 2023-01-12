@@ -144,7 +144,8 @@ public class Board {
             for (int j = 0; j < 8; j++)
                 for (Piece piece : board)
                     if (piece.ROW.Y == i && piece.COLUMN.X == j) {
-                        out += piece + " ";
+                        out += " " + (piece.COLOR == Color.WHITE ? ("" + piece.TYPE.ch).toUpperCase() : piece.TYPE.ch)
+                                + " ";
                         break;
                     } else if (piece == board.get(board.size() - 1))
                         out += " * ";
