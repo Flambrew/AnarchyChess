@@ -81,51 +81,52 @@ public class Rules {
      * @param board
      * @return ArrayList of Move
      */
-    public static ArrayList<Move> getLegalMoves(Board board) {
+    public static ArrayList<Move> getLegalMoves(Board board, Color color) {
         ArrayList<Move> m = new ArrayList<Move>();
         Piece[][] b = generateBoardArray(board.board());
         for (Piece p : board.board())
-            switch (p.TYPE) {
-                case PAWN:
-                    if (p.COLOR == Color.WHITE) {
-                        directMove(m, b, p, WHITE_PAWN_CAPTURES, false, true);
-                        directMove(m, b, p, WHITE_PAWN_MOVE, true, false);
-                        if (p.ROW == Row._2)
-                            slideMove(m, b, p, WHITE_PAWN_PUSH, true, false, 2);
-                    } else {
-                        directMove(m, b, p, BLACK_PAWN_CAPTURES, false, true);
-                        directMove(m, b, p, BLACK_PAWN_MOVE, true, false);
-                        if (p.ROW == Row._7)
-                            slideMove(m, b, p, BLACK_PAWN_PUSH, true, false, 2);
-                    }
-                    // TODO: Pawn Promotion, Passant
-                    break;
-                case KNIGHT:
-                    directMove(m, b, p, L_SHAPES, true, true);
-                    break;
-                case BISHOP:
-                    slideMove(m, b, p, DIAGONALS, true, true);
-                    // TODO: Bishop 'Il Vaticano'
-                    break;
-                case ROOK:
-                    slideMove(m, b, p, ORTHAGONALS, true, true);
-                    // TODO: Rook Castling
-                    break;
-                case KNOOK:
-                    directMove(m, b, p, L_SHAPES, true, true);
-                    slideMove(m, b, p, ORTHAGONALS, true, true);
-                    break;
-                case QUEEN:
-                    slideMove(m, b, p, DIAGONALS, true, true);
-                    slideMove(m, b, p, ORTHAGONALS, true, true);
-                    // TODO: Queen 'Beta Decay'
-                    break;
-                case KING:
-                    // TODO: King Move, Castling, 'Pawn Push', No C2
-                    break;
-                default:
-                    break;
-            }
+            if (p.COLOR == color)
+                switch (p.TYPE) {
+                    case PAWN:
+                        if (p.COLOR == Color.WHITE) {
+                            directMove(m, b, p, WHITE_PAWN_CAPTURES, false, true);
+                            directMove(m, b, p, WHITE_PAWN_MOVE, true, false);
+                            if (p.ROW == Row._2)
+                                slideMove(m, b, p, WHITE_PAWN_PUSH, true, false, 2);
+                        } else {
+                            directMove(m, b, p, BLACK_PAWN_CAPTURES, false, true);
+                            directMove(m, b, p, BLACK_PAWN_MOVE, true, false);
+                            if (p.ROW == Row._7)
+                                slideMove(m, b, p, BLACK_PAWN_PUSH, true, false, 2);
+                        }
+                        // TODO: Pawn Promotion, Passant
+                        break;
+                    case KNIGHT:
+                        directMove(m, b, p, L_SHAPES, true, true);
+                        break;
+                    case BISHOP:
+                        slideMove(m, b, p, DIAGONALS, true, true);
+                        // TODO: Bishop 'Il Vaticano'
+                        break;
+                    case ROOK:
+                        slideMove(m, b, p, ORTHAGONALS, true, true);
+                        // TODO: Rook Castling
+                        break;
+                    case KNOOK:
+                        directMove(m, b, p, L_SHAPES, true, true);
+                        slideMove(m, b, p, ORTHAGONALS, true, true);
+                        break;
+                    case QUEEN:
+                        slideMove(m, b, p, DIAGONALS, true, true);
+                        slideMove(m, b, p, ORTHAGONALS, true, true);
+                        // TODO: Queen 'Beta Decay'
+                        break;
+                    case KING:
+                        // TODO: King Move, Castling, 'Pawn Push', No C2
+                        break;
+                    default:
+                        break;
+                }
         return m;
     }
 
@@ -144,7 +145,7 @@ public class Rules {
             boolean habitable, boolean capturable) {
         slideMove(moves, pieces, p, directionList, habitable, capturable, pieces.length);
     }
-    
+
     private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] directionList,
             boolean habitable, boolean capturable, int distance) {
         for (Vector2 move : directionList)
@@ -166,7 +167,7 @@ public class Rules {
     private static Piece[][] generateBoardArray(ArrayList<Piece> board) {
         Piece[][] pieces = new Piece[8][8];
         for (Piece piece : board)
-            pieces[7 - piece.ROW.Y][piece.COLUMN.X] = piece;
+            pieces[piece.ROW.Y][piece.COLUMN.X] = piece;
         return pieces;
     }
 }

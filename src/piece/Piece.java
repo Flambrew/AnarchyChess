@@ -16,6 +16,7 @@ public class Piece {
     public Row ROW;
     public Column COLUMN;
 
+    private boolean passantable;
     private boolean hasBeenMoved;
 
     /**
@@ -55,9 +56,29 @@ public class Piece {
     }
 
     /**
-     * Sets Piece.hasBeenMoved to true.
+     * Returns whether the Piece is passantable.
+     * 
+     * @return boolean
      */
-    public void wasMoved() {
+    public boolean passantable() {
+        return passantable;
+    }
+
+    /**
+     * Sets Piece.passantable to true.
+     */
+    public void setPassantable(boolean passantable) {
+        this.passantable = passantable;
+    }
+
+    /**
+     * Moves the Piece given a Move
+     * 
+     * @param move
+     */
+    public void move(Move move) {
+        ROW = ROW.move(move.TRANSFORM.Y);
+        COLUMN = COLUMN.move(move.TRANSFORM.X);
         hasBeenMoved = true;
     }
     

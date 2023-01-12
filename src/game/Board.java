@@ -53,6 +53,14 @@ public class Board {
     };
 
     /**
+     * Initializes a new Board with preset Piece objects matching the official chess
+     * piece starting positions.
+     */
+    public Board() {
+        setup();
+    }
+
+    /**
      * Initializes a new Board with preset Piece objects matching a given array of
      * positions, if empty, matching the official chess piece starting positions.
      *
@@ -140,6 +148,6 @@ public class Board {
                         break;
                     } else if (piece == board.get(board.size() - 1))
                         out += " * ";
-        return out.substring(0, out.length() - 1);
+        return out.substring(0, out.length() - 1) + '\n';
     }
 }

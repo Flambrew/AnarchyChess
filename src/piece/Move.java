@@ -29,6 +29,6 @@ public class Move {
     }
 
     public String toString() {
-        return String.format("(%s%s) -> (%s%s)\n", COLUMN, ROW, COLUMN.move(TRANSFORM.X), ROW.move(TRANSFORM.Y));
+        return String.format("(%s%s) -> (%s%s)", COLUMN, ROW, COLUMN.move(TRANSFORM.X), ROW.move(TRANSFORM.Y));
     }
 }
