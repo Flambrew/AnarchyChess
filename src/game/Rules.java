@@ -91,12 +91,12 @@ public class Rules {
                         directMove(m, b, p, WHITE_PAWN_CAPTURES, false, true);
                         directMove(m, b, p, WHITE_PAWN_MOVE, true, false);
                         if (p.ROW == Row._2)
-                            slideMove(m, b, p, WHITE_PAWN_PUSH, anarchy, anarchy, 2);
+                            slideMove(m, b, p, WHITE_PAWN_PUSH, true, false, 2);
                     } else {
                         directMove(m, b, p, BLACK_PAWN_CAPTURES, false, true);
                         directMove(m, b, p, BLACK_PAWN_MOVE, true, false);
                         if (p.ROW == Row._7)
-                            slideMove(m, b, p, BLACK_PAWN_PUSH, anarchy, anarchy, 2);
+                            slideMove(m, b, p, BLACK_PAWN_PUSH, true, false, 2);
                     }
                     // TODO: Pawn Promotion, Passant
                     break;
@@ -145,6 +145,7 @@ public class Rules {
         slideMove(moves, pieces, piece, directionList, habitable, capturable, pieces.length);
     }
 
+    // TODO: FIX TRAVEL ACROSS CAPTURABLE
     private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] directionList,
             boolean habitable, boolean capturable, int distance) {
         for (Vector2 move : directionList)
