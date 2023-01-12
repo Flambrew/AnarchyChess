@@ -30,14 +30,6 @@ public class Rules {
     private static final Vector2[] BLACK_PAWN_MOVE = new Vector2[] {
             new Vector2(0, -1)
     };
-
-    // Slide Moves
-    private static final Vector2[] WHITE_PAWN_PUSH = new Vector2[] {
-            new Vector2(0, 1)
-    };
-    private static final Vector2[] BLACK_PAWN_PUSH = new Vector2[] {
-            new Vector2(0, -1)
-    };
     private static final Vector2[] L_SHAPES = new Vector2[] {
             new Vector2(1, 2),
             new Vector2(1, -2),
@@ -47,6 +39,14 @@ public class Rules {
             new Vector2(2, -1),
             new Vector2(-2, 1),
             new Vector2(-2, -1)
+    };
+
+    // Slide Moves
+    private static final Vector2[] WHITE_PAWN_PUSH = new Vector2[] {
+            new Vector2(0, 1)
+    };
+    private static final Vector2[] BLACK_PAWN_PUSH = new Vector2[] {
+            new Vector2(0, -1)
     };
     private static final Vector2[] DIAGONALS = new Vector2[] {
             new Vector2(1, 1),
@@ -94,14 +94,17 @@ public class Rules {
                     case PAWN:
                         if (p.COLOR == Color.WHITE) {
                             directMove(m, b, p, WHITE_PAWN_CAPTURES, false, true);
-                            directMove(m, b, p, WHITE_PAWN_MOVE, true, false);
                             if (p.ROW == Row._2)
                                 slideMove(m, b, p, WHITE_PAWN_PUSH, true, false, 2);
+                            else
+                                directMove(m, b, p, WHITE_PAWN_MOVE, true, false);
+
                         } else {
                             directMove(m, b, p, BLACK_PAWN_CAPTURES, false, true);
-                            directMove(m, b, p, BLACK_PAWN_MOVE, true, false);
                             if (p.ROW == Row._7)
                                 slideMove(m, b, p, BLACK_PAWN_PUSH, true, false, 2);
+                            else
+                                directMove(m, b, p, BLACK_PAWN_MOVE, true, false);
                         }
                         // TODO: Pawn Promotion, Passant
                         break;
@@ -152,7 +155,7 @@ public class Rules {
 
     private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] directionList,
             boolean habitable, boolean capturable, int distance) {
-        /*for (Vector2 move : directionList) //TODO: slidemove - this shit brokey
+        for (Vector2 move : directionList) // TODO: slidemove - this shit brokey
             for (int i = 1; i < distance; i++)
                 try {
                     Piece activePiece = pieces[p.ROW.Y + (move.Y * i)][p.COLUMN.X + (move.X * i)];
@@ -166,7 +169,8 @@ public class Rules {
                         break;
                 } catch (Exception e) {
                     break;
-                }*/
+                }
+
     }
 
     private static Piece[][] generateBoardArray(ArrayList<Piece> board) {
