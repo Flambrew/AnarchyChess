@@ -7,7 +7,7 @@ import src.piece.Move;
 public class Testing {
     public static void main(String[] args) {
         Board b = new Board();
-        for (Move move : Rules.getLegalMoves(b.board()))
+        for (Move move : Rules.getLegalMoves(b))
             System.out.print(move);
     }
 }
