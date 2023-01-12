@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import src.game.Board;
 import src.game.Rules;
 import src.piece.Move;
-import src.piece.Piece;
 import src.piece.attributes.Color;
 
 /**
@@ -32,16 +31,7 @@ public class MainLoop {
                 // print(moves);
 
                 Move m = moves.get((int) (Math.random() * moves.size()));
-                for (Piece p : board.board()) {
-                    if (p.ROW.Y == m.TRANSFORM.Y && p.COLUMN.X == m.TRANSFORM.X) {
-                        board.board().remove(p);
-                        break;
-                    }
-                    if (p.ROW == m.ROW && p.COLUMN == m.COLUMN) {
-                        p.move(m);
-                        break;
-                    }
-                }
+                board.move(m);
 
                 break;
             }
@@ -54,19 +44,10 @@ public class MainLoop {
                 // print(moves);
 
                 Move m = moves.get((int) (Math.random() * moves.size()));
-                for (Piece p : board.board())
-                    if (p.ROW == m.ROW && p.COLUMN == m.COLUMN) {
-                        p.move(m);
-                        break;
-                    }
+                board.move(m);
 
                 break;
             }
         }
-    }
-
-    public static void print(ArrayList<Move> moves) {
-        for (Move move : moves)
-            System.out.println(move);
     }
 }

@@ -2,6 +2,7 @@ package src.game;
 
 import java.util.ArrayList;
 
+import src.piece.Move;
 import src.piece.Piece;
 import src.piece.attributes.Color;
 import src.piece.attributes.Column;
@@ -129,6 +130,16 @@ public class Board {
      */
     public ArrayList<Piece> board() {
         return board;
+    }
+
+    /**
+     * Executes the specified move.
+     * 
+     * @param move
+     */
+    public void move(Move move) {
+        board.remove(get(move.ROW.move(move.TRANSFORM.Y), move.COLUMN.move(move.TRANSFORM.X)));
+        get(move.ROW, move.COLUMN).move(move);
     }
 
     private void setup(Piece... pieceList) {
