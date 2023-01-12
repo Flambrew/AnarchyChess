@@ -129,33 +129,34 @@ public class Rules {
         return m;
     }
 
-    private static void directMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] locationList,
+    private static void directMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] locationList,
             boolean habitable, boolean capturable) {
         for (Vector2 move : locationList)
             try {
-                Piece activePiece = pieces[piece.ROW.Y + move.Y][piece.COLUMN.X + move.X];
-                if (habitable && activePiece == null || capturable && activePiece.COLOR != piece.COLOR)
-                    moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y), piece.COLUMN.move(move.X)));
+                Piece activePiece = pieces[p.ROW.Y + move.Y][p.COLUMN.X + move.X];
+                if (habitable && activePiece == null || capturable && activePiece.COLOR != p.COLOR)
+                    moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y), p.COLUMN.move(move.X)));
             } catch (Exception e) {
             }
     }
 
-    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] directionList,
+    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] directionList,
             boolean habitable, boolean capturable) {
-        slideMove(moves, pieces, piece, directionList, habitable, capturable, pieces.length);
+        slideMove(moves, pieces, p, directionList, habitable, capturable, pieces.length);
     }
-
-    // TODO: FIX TRAVEL ACROSS CAPTURABLE
-    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] directionList,
+    
+    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece p, Vector2[] directionList,
             boolean habitable, boolean capturable, int distance) {
         for (Vector2 move : directionList)
             for (int i = 1; i < distance; i++)
                 try {
-                    Piece activePiece = pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)];
-                    if (habitable && activePiece == null || capturable && activePiece.COLOR != piece.COLOR)
-                        moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
-                                piece.COLUMN.move(move.X * i)));
-                    else
+                    Piece activePiece = pieces[p.ROW.Y + (move.Y * i)][p.COLUMN.X + (move.X * i)];
+                    if (habitable && activePiece == null)
+                        moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y * i), p.COLUMN.move(move.X * i)));
+                    else if (capturable && activePiece.COLOR != p.COLOR) {
+                        moves.add(new Move(p.ROW, p.COLUMN, p.ROW.move(move.Y * i), p.COLUMN.move(move.X * i)));
+                        break;
+                    } else
                         break;
                 } catch (Exception e) {
                     break;
