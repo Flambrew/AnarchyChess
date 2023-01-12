@@ -1,11 +1,11 @@
-package src.run;
+package src.main;
 
 import java.util.ArrayList;
 
 import src.game.Board;
 import src.game.Rules;
-import src.piece.Move;
-import src.piece.attributes.Color;
+import src.game.constructs.Move;
+import src.game.constructs.attributes.Color;
 
 /**
  * Anarchy Chess

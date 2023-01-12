@@ -1,4 +1,4 @@
-package src.run;
+package src.main;
 
 import src.graphics.Window;
 

@@ -1,8 +1,7 @@
-package src.piece;
+package src.game.constructs;
 
-import src.piece.attributes.Column;
-import src.piece.attributes.Row;
-import src.utils.Vector2;
+import src.game.constructs.attributes.Column;
+import src.game.constructs.attributes.Row;
 
 /**
  * @author Andrew Matherne
