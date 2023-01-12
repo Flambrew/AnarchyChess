@@ -61,25 +61,37 @@ public class Rules {
         for (Piece piece : board)
             switch (piece.TYPE) {
                 case PAWN:
-                    moves.addAll(getPawnMoves(piece, pieces));
+                    // TODO: Pawn Capture
+                    // TODO: Pawn Move
+                    // TODO: Pawn Push
+                    // TODO: Pawn Promotion
+                    // TODO: Pawn Passant
                     break;
                 case KNIGHT:
-                    moves.addAll(getKnightMoves(piece, pieces));
+                    directMove(moves, pieces, piece, L_SHAPES);
                     break;
                 case BISHOP:
-                    moves.addAll(getBishopMoves(piece, pieces));
+                    slideMove(moves, pieces, piece, DIAGONALS);
+                    // TODO: Bishop 'Il Vaticano'
                     break;
                 case ROOK:
-                    moves.addAll(getRookMoves(piece, pieces));
+                    slideMove(moves, pieces, piece, ORTHAGONALS);
+                    // TODO: Rook Castling
                     break;
                 case KNOOK:
-                    moves.addAll(getKnookMoves(piece, pieces));
+                    directMove(moves, pieces, piece, L_SHAPES);
+                    slideMove(moves, pieces, piece, ORTHAGONALS);
                     break;
                 case QUEEN:
-                    moves.addAll(getQueenMoves(piece, pieces));
+                    slideMove(moves, pieces, piece, DIAGONALS);
+                    slideMove(moves, pieces, piece, ORTHAGONALS);
+                    // TODO: Queen 'Beta Decay'
                     break;
                 case KING:
-                    moves.addAll(getKingMoves(piece, pieces));
+                    // TODO: King Move
+                    // TODO: King Castling
+                    // TODO: King 'Pawn Push'
+                    // TODO: King No C2
                     break;
                 default:
                     break;
@@ -87,38 +99,22 @@ public class Rules {
         return moves;
     }
 
-    private static ArrayList<Move> getPawnMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-        // TODO: Pawn Capture
-        // TODO: Pawn Move
-        // TODO: Pawn Push
-        // TODO: Pawn Promotion
-        // TODO: Pawn Passant
-        return moves;
-    }
-
-    private static ArrayList<Move> getKnightMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-
-        directMove( moves, pieces, piece);
-        
-        // L Shapes
-        for (Vector2 move : L_SHAPES)
+    private static void directMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] list) {
+        for (Vector2 move : list)
             try {
                 if (pieces[piece.ROW.Y + move.Y][piece.COLUMN.X + move.X] == null)
                     moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y), piece.COLUMN.move(move.X)));
             } catch (Exception e) {
             }
-
-        return moves;
     }
 
-    private static ArrayList<Move> getBishopMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
+    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] list) {
+        slideMove(moves, pieces, piece, list, pieces.length);
+    }
 
-        // Diagonals
-        for (Vector2 move : DIAGONALS)
-            for (int i = 1;; i++)
+    private static void slideMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece, Vector2[] list, int distance) {
+        for (Vector2 move : list)
+            for (int i = 1; i < distance; i++)
                 try {
                     if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
                         moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
@@ -128,61 +124,6 @@ public class Rules {
                 } catch (Exception e) {
                     break;
                 }
-
-        // TODO: Bishop 'Il Vaticano'
-
-        return moves;
-    }
-
-    private static ArrayList<Move> getRookMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-
-        // Orthagonals
-        for (Vector2 move : ORTHAGONALS)
-            for (int i = 1;; i++)
-                try {
-                    if (pieces[piece.ROW.Y + (move.Y * i)][piece.COLUMN.X + (move.X * i)] == null)
-                        moves.add(new Move(piece.ROW, piece.COLUMN, piece.ROW.move(move.Y * i),
-                                piece.COLUMN.move(move.X * i)));
-                    else
-                        break;
-                } catch (Exception e) {
-                    break;
-                }
-
-        // TODO: Rook Castling
-
-        return moves;
-    }
-
-    private static ArrayList<Move> getKnookMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-        moves.addAll(getKnightMoves(piece, pieces));
-        moves.addAll(getRookMoves(piece, pieces));
-        return moves;
-    }
-
-    private static ArrayList<Move> getQueenMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-        moves.addAll(getBishopMoves(piece, pieces));
-        moves.addAll(getRookMoves(piece, pieces));
-
-        // TODO: Queen 'Beta Decay'
-        return moves;
-    }
-
-    private static ArrayList<Move> getKingMoves(Piece piece, Piece[][] pieces) {
-        ArrayList<Move> moves = new ArrayList<Move>();
-        // TODO: King Move
-        // TODO: King Castle
-
-        // TODO: King 'Pawn Push'
-        // TODO: King No C2
-        return moves;
-    }
-
-    private static void directMove(ArrayList<Move> moves, Piece[][] pieces, Piece piece) {
-        
     }
 
     private static Piece[][] generateBoardArray(ArrayList<Piece> board) {
