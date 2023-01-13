@@ -5,12 +5,12 @@ import javafx.stage.Stage;
 
 public class Window extends Application {
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     public void start(Stage mainStage) {
         mainStage.setTitle("My Window");
-        mainStage.setWidth(1280);
-        mainStage.setHeight(720);
-        mainStage.setResizable(false);
         mainStage.show();
-        
     }
 }

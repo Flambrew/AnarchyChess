@@ -10,22 +10,6 @@
             "request": "launch",
             "mainClass": "${file}",
             "vmArgs": "--module-path \"lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Launch MainLoop",
-            "request": "launch",
-            "mainClass": "src.main.MainLoop",
-            "projectName": "AnarchyChess_e9d2d77c",
-            "vmArgs": "--module-path \"lib\" --add-modules javafx.controls,javafx.fxml"
-        },
-        {
-            "type": "java",
-            "name": "Launch Testing",
-            "request": "launch",
-            "mainClass": "src.main.Testing",
-            "projectName": "AnarchyChess_e9d2d77c",
-            "vmArgs": "--module-path \"lib\" --add-modules javafx.controls,javafx.fxml"
         }
     ]
 }
