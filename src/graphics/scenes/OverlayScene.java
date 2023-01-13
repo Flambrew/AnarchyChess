@@ -1,6 +1,6 @@
-package src.graphics.states;
+package src.graphics.scenes;
 
-public enum OverlayState {
+public enum OverlayScene {
     NONE,
     SETTINGS,
     GAME_OVER,

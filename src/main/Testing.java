@@ -1,12 +1,13 @@
 package src.main;
 
+import src.game.constructs.Vector2;
 import src.graphics.Window;
 
 public class Testing {
 
-    private static Window graphicsHandler;
+    private static Window window;
     public static void main(String[] args) {
-        graphicsHandler = new Window("AnarchyChess");
-        graphicsHandler.init();
+        window = new Window("AnarchyChess", new Vector2(1280, 720), true);
+        window.init();
     }
 }

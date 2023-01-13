@@ -3,19 +3,25 @@ package src.graphics;
 import java.awt.*;
 import javax.swing.*;
 
-import src.graphics.states.OverlayState;
-import src.graphics.states.ScreenState;
+import src.graphics.scenes.MainScene;
+import src.graphics.scenes.OverlayScene;
 
 public class Drawing extends JPanel {
 
-    private ScreenState screenState;
-    private OverlayState overlayState;
+    private MainScene mainScene;
+    private OverlayScene overlayScene;
+
+    public Drawing() {
+        mainScene = MainScene.MAIN_MENU;
+        overlayScene = OverlayScene.NONE;
+    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        switch (screenState) {
+        switch (mainScene) {
             case MAIN_MENU:
+                renderMenu(g);
                 break;
             case GAME:
                 break;
@@ -24,7 +30,7 @@ public class Drawing extends JPanel {
 
         }
 
-        switch (overlayState) {
+        switch (overlayScene) {
             case NONE:
                 break;
             case SETTINGS:
@@ -36,13 +42,20 @@ public class Drawing extends JPanel {
             default:
                 break;
         }
+
+        g.dispose();
+        repaint();
     }
 
-    public void setScreenState(ScreenState screenState) {
-        this.screenState = screenState;
+    private void renderMenu(Graphics g) {
+
     }
 
-    public void setOverlayState(OverlayState overlayState) {
-        this.overlayState = overlayState;
+    public void setMainScene(MainScene screenState) {
+        this.mainScene = screenState;
+    }
+
+    public void setOverlayScene(OverlayScene overlayState) {
+        this.overlayScene = overlayState;
     }
 }
