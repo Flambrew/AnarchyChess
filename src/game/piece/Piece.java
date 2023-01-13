@@ -1,9 +1,9 @@
-package src.game.constructs;
+package src.game.piece;
 
-import src.game.constructs.attributes.Color;
-import src.game.constructs.attributes.Column;
-import src.game.constructs.attributes.Row;
-import src.game.constructs.attributes.Type;
+import src.game.piece.attributes.Color;
+import src.game.piece.attributes.Column;
+import src.game.piece.attributes.Row;
+import src.game.piece.attributes.Type;
 
 /**
  * @author Andrew Matherne

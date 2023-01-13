@@ -2,11 +2,11 @@ package src.game;
 
 import java.util.ArrayList;
 
-import src.game.constructs.Move;
-import src.game.constructs.Piece;
-import src.game.constructs.Vector2;
-import src.game.constructs.attributes.Color;
-import src.game.constructs.attributes.Row;
+import src.game.piece.Move;
+import src.game.piece.Piece;
+import src.game.piece.attributes.Color;
+import src.game.piece.attributes.Row;
+import src.utils.Vector2;
 
 /**
  * @author Andrew Matherne

@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 import src.game.Board;
 import src.game.Rules;
-import src.game.constructs.Move;
-import src.game.constructs.attributes.Color;
+import src.game.piece.Move;
+import src.game.piece.attributes.Color;
 
 /**
  * Anarchy Chess

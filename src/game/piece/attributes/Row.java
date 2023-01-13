@@ -1,4 +1,4 @@
-package src.game.constructs.attributes;
+package src.game.piece.attributes;
 
 /**
  * @author Andrew Matherne
