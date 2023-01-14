@@ -3,7 +3,6 @@ package src.graphics;
 import java.util.stream.IntStream;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -18,9 +17,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import src.graphics.scenes.MainScene;
-import src.graphics.scenes.OverlayScene;
 import src.utils.Vector2;
 
 public class Window extends Application {
@@ -30,9 +26,6 @@ public class Window extends Application {
     private static final Color TEXT = new Color(.933, 1, 1, 1);
     private static final Color LIGHT = new Color(.8, .655, 0, 1);
     private static final Color DARK = new Color(.514, .404, .141, 1);
-
-    private static MainScene activeScene = MainScene.MAIN_MENU;
-    private static OverlayScene overlay = OverlayScene.NONE;
 
     private static Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
     private static Vector2 windowSize = new Vector2(1280, 720);
@@ -73,15 +66,9 @@ public class Window extends Application {
             button.setTextFill(TEXT);
             button.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         }
-        buttons[0].setOnAction(e -> {
-            stage.setScene(gameScene(stage));
-        });
-        buttons[1].setOnAction(e -> {
-            stage.setScene(gameScene(stage));
-        });
-        buttons[2].setOnAction(e -> {
-            overlay = OverlayScene.SETTINGS;
-        });
+        buttons[0].setOnAction(e -> stage.setScene(gameScene(stage)));
+        buttons[1].setOnAction(e -> stage.setScene(gameScene(stage)));
+        buttons[2].setOnAction(e -> System.out.println("guh"));
 
         stage.widthProperty().addListener((observable, oldValue, newValue) -> {
             windowSize = new Vector2(newValue.intValue(), windowSize.Y);
@@ -158,10 +145,16 @@ public class Window extends Application {
         gc.fillRect(0, 0, windowSize.X, windowSize.Y);
         gc.setFill(MENU);
         gc.fillRoundRect(windowSize.X * .1, windowSize.Y * .125, windowSize.X * .8, windowSize.Y * .5, 50, 50);
+        gc.fillRoundRect(windowSize.X * .15, windowSize.Y * .75, windowSize.X * .2, windowSize.Y * .125, 25, 25);
+        gc.fillRoundRect(windowSize.X * .40, windowSize.Y * .75, windowSize.X * .2, windowSize.Y * .125, 25, 25);
+        gc.fillRoundRect(windowSize.X * .65, windowSize.Y * .75, windowSize.X * .2, windowSize.Y * .125, 25, 25);
     }
 
     private void drawGame(GraphicsContext gc) {
         gc.clearRect(0, 0, windowSize.X, windowSize.Y);
+        for (int i = 0; i < 64; i++) {
+            gc.setFill(i % 2 == 0 ^ i / 8 % 2 == 1 ? DARK : LIGHT);
+        }
     }
 
     private void updateButtonX(Button[] buttons, Vector2[] transforms) {
