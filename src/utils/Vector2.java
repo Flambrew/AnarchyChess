@@ -5,8 +5,7 @@ package src.utils;
  */
 public class Vector2 {
 
-    public final int X, Y;
-    public final double x, y;
+    public int X, Y;
 
     /**
      * Initializes a new Vector2.
@@ -14,10 +13,8 @@ public class Vector2 {
      * @param x
      * @param y
      */
-    public Vector2(double x, double y) {
-        this.X = (int)x;
-        this.Y = (int)y;
-        this.x = x;
-        this.y = y;
+    public Vector2(int x, int y) {
+        this.X = x;
+        this.Y = y;
     }
 }
