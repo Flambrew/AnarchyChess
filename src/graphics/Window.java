@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import src.graphics.scenes.MainScene;
 import src.graphics.scenes.OverlayScene;
 import src.utils.Vector2;
@@ -45,8 +46,10 @@ public class Window extends Application {
 
         stage.setX((screenSize.getWidth() - windowSize.X) / 2);
         stage.setY((screenSize.getHeight() - windowSize.Y) / 2);
-        stage.setMinWidth(200);
-        stage.setMinWidth(200);
+        stage.setMinWidth(800);
+        stage.setMinHeight(500);
+
+        stage.setResizable(true);
 
         stage.setScene(menuScene(stage));
         stage.show();
@@ -117,7 +120,8 @@ public class Window extends Application {
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new Button();
             root.getChildren().add(buttons[i]);
-            buttons[i].setBackground(new Background(new BackgroundFill(i % 2 == 0 ? LIGHT : DARK, null, null)));
+            buttons[i].setBackground(
+                    new Background(new BackgroundFill(i % 2 == 0 ^ i / 8 % 2 == 1 ? DARK : LIGHT, null, null)));
             buttons[i].setOnAction(e -> System.out.println("yo mama"));
         }
 
@@ -126,7 +130,11 @@ public class Window extends Application {
             canvas.setWidth(windowSize.X);
             drawGame(gc);
 
-            updateButtonX(buttons, IntStream.range(0, buttons.length).mapToObj(i -> new Vector2(0, 0)).toArray(Vector2[]::new));
+            updateButtonX(buttons, IntStream.range(0, buttons.length).mapToObj(i -> new Vector2(
+                    (windowSize.X - Math.min(windowSize.X - 400, windowSize.Y - 100)) / 2
+                            + i % 8 * (Math.min(windowSize.X - 400, windowSize.Y - 100) / 8) - 8,
+                    Math.min(windowSize.X - 400, windowSize.Y - 100) / 8))
+                    .toArray(Vector2[]::new));
 
         });
         stage.heightProperty().addListener((observable, oldValue, newValue) -> {
@@ -134,8 +142,11 @@ public class Window extends Application {
             canvas.setHeight(windowSize.Y);
             drawGame(gc);
 
-            for (Button button : buttons)
-                updateButtonY(new Button[] { button }, new Vector2[] { new Vector2(100, 100) });
+            updateButtonY(buttons, IntStream.range(0, buttons.length).mapToObj(i -> new Vector2(
+                    (windowSize.Y - Math.min(windowSize.X - 400, windowSize.Y - 100)) / 2
+                            + i / 8 * (Math.min(windowSize.X - 400, windowSize.Y - 100) / 8) - 19,
+                    Math.min(windowSize.X - 400, windowSize.Y - 100) / 8))
+                    .toArray(Vector2[]::new));
         });
 
         return game;

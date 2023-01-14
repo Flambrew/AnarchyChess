@@ -17,4 +17,8 @@ public class Vector2 {
         this.X = x;
         this.Y = y;
     }
+
+    public String toString() {
+        return String.format("(%d, %d)", X, Y);
+    }
 }
