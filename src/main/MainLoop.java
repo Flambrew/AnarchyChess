@@ -20,34 +20,34 @@ public class MainLoop {
     public static Board board = new Board();
     public static Color color;
 
-    public static void main(String[] args) {
-        while (true) { // turnloop
+    // public static void main(String[] args) {
+    //     while (true) { // turnloop
 
-            System.out.println(board);
+    //         System.out.println(board);
 
-            while (true) { // white turn
-                color = Color.WHITE;
-                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
-                // print(moves);
+    //         while (true) { // white turn
+    //             color = Color.WHITE;
+    //             ArrayList<Move> moves = Rules.getLegalMoves(board, color);
+    //             // print(moves);
 
-                Move m = moves.get((int) (Math.random() * moves.size()));
-                board.move(m);
+    //             Move m = moves.get((int) (Math.random() * moves.size()));
+    //             board.move(m);
 
-                break;
-            }
+    //             break;
+    //         }
 
-            System.out.println(board);
+    //         System.out.println(board);
 
-            while (true) { // black turn
-                color = Color.BLACK;
-                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
-                // print(moves);
+    //         while (true) { // black turn
+    //             color = Color.BLACK;
+    //             ArrayList<Move> moves = Rules.getLegalMoves(board, color);
+    //             // print(moves);
 
-                Move m = moves.get((int) (Math.random() * moves.size()));
-                board.move(m);
+    //             Move m = moves.get((int) (Math.random() * moves.size()));
+    //             board.move(m);
 
-                break;
-            }
-        }
-    }
+    //             break;
+    //         }
+    //     }
+    // }
 }
