@@ -1,6 +1,7 @@
 package src.graphics;
 
 import javafx.scene.canvas.GraphicsContext;
+
 import src.graphics.graphicutils.Colors;
 import src.graphics.graphicutils.Offset;
 import src.utils.Vector2;
@@ -34,7 +35,6 @@ public class Draw {
      * @param windowSize
      */
     public static void game(GraphicsContext gc, Vector2 windowSize) {
-        windowSize = new Vector2(windowSize.X + Offset.X, windowSize.Y + Offset.Y);
         gc.clearRect(0, 0, windowSize.X, windowSize.Y);
 
         gc.setFill(Colors.BACK);
@@ -48,7 +48,6 @@ public class Draw {
      * @param windowSize
      */
     public static void settings(GraphicsContext gc, Vector2 windowSize) {
-        windowSize = new Vector2(windowSize.X + Offset.X, windowSize.Y + Offset.Y);
         gc.clearRect(0, 0, windowSize.X, windowSize.Y);
 
         gc.setFill(Colors.BACK);
