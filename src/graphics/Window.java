@@ -8,24 +8,23 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+
 import src.graphics.graphicutils.Colors;
 import src.graphics.graphicutils.Fonts;
+import src.graphics.graphicutils.Offset;
 import src.utils.Vector2;
 
 public class Window extends Application {
 
     private static Rectangle2D screenSize = Screen.getPrimary().getVisualBounds();
     private static Vector2 windowSize = new Vector2(1280, 720);
-
-    public static void setWindowSize(Vector2 windowSize) {
-        Window.windowSize = windowSize;
-    }
 
     public void start(Stage stage) {
         stage.setTitle("Window");
@@ -68,7 +67,7 @@ public class Window extends Application {
             canvas.setWidth(windowSize.X);
             Draw.menu(gc, windowSize);
 
-            ResizeButton.x(buttons, new Vector2[] {
+            Resize.buttonX(buttons, new Vector2[] {
                     new Vector2((int) (windowSize.X * .15), (int) (windowSize.X * .2)),
                     new Vector2((int) (windowSize.X * .40), (int) (windowSize.X * .2)),
                     new Vector2((int) (windowSize.X * .65), (int) (windowSize.X * .2))
@@ -79,39 +78,46 @@ public class Window extends Application {
             canvas.setHeight(windowSize.Y);
             Draw.menu(gc, windowSize);
 
-            ResizeButton.y(buttons, new Vector2[] {
+            Resize.buttonY(buttons, new Vector2[] {
                     new Vector2((int) (windowSize.Y * .75), (int) (windowSize.Y * .125)),
                     new Vector2((int) (windowSize.Y * .75), (int) (windowSize.Y * .125)),
                     new Vector2((int) (windowSize.Y * .75), (int) (windowSize.Y * .125))
             });
         });
 
+        System.out.println("switched to menu scene");
+        System.out.println(windowSize);
+        System.out.println();
         return menu;
     }
 
     private Scene gameScene(Stage stage) {
         Pane root = new Pane();
-        Canvas canvas = new Canvas(windowSize.X, windowSize.Y);
+        Canvas canvas = new Canvas(windowSize.X += Offset.X * 2, windowSize.Y += Offset.Y);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Scene game = new Scene(root, windowSize.X, windowSize.Y);
         root.getChildren().add(canvas);
 
-        Button[] buttons = new Button[64];
-        for (int i = 0; i < buttons.length; i++) {
-            buttons[i] = new Button();
-            root.getChildren().add(buttons[i]);
-            buttons[i].setBackground(
-                    new Background(
-                            new BackgroundFill(i % 2 == 0 ^ i / 8 % 2 == 1 ? Colors.DARK : Colors.LIGHT, null, null)));
-            buttons[i].setOnAction(e -> System.out.println("yo mama")); // TODO: make button inputs actually do stuff
+        Button[] squares = new Button[64];
+        for (int i = 0; i < squares.length; i++) {
+            squares[i] = new Button();
+            root.getChildren().add(squares[i]);
+            squares[i].setBackground(new Background(
+                    new BackgroundFill(i % 2 == 0 ^ i / 8 % 2 == 1 ? Colors.DARK : Colors.LIGHT, null, null)));
+            squares[i].setOnAction(e -> System.out.println("yo mama")); // TODO: make button inputs actually do stuff
         }
+
+        game.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE)
+                root.getChildren().add(addSettingsOverlay(game)); // TODO: settings overlay toggle
+        });
 
         stage.widthProperty().addListener((observable, oldValue, newValue) -> {
             windowSize = new Vector2(newValue.intValue(), windowSize.Y);
             canvas.setWidth(windowSize.X);
             Draw.game(gc, windowSize);
 
-            ResizeButton.x(buttons, IntStream.range(0, buttons.length).mapToObj(i -> new Vector2(
+            Resize.buttonX(squares, IntStream.range(0, squares.length).mapToObj(i -> new Vector2(
                     (windowSize.X - Math.min(windowSize.X - 400, windowSize.Y - 100)) / 2
                             + i % 8 * (Math.min(windowSize.X - 400, windowSize.Y - 100) / 8),
                     Math.min(windowSize.X - 400, windowSize.Y - 100) / 8))
@@ -123,19 +129,22 @@ public class Window extends Application {
             canvas.setHeight(windowSize.Y);
             Draw.game(gc, windowSize);
 
-            ResizeButton.y(buttons, IntStream.range(0, buttons.length).mapToObj(i -> new Vector2(
+            Resize.buttonY(squares, IntStream.range(0, squares.length).mapToObj(i -> new Vector2(
                     (windowSize.Y - Math.min(windowSize.X - 400, windowSize.Y - 100)) / 2
-                            + i / 8 * (Math.min(windowSize.X - 400, windowSize.Y - 100) / 8) ,
+                            + i / 8 * (Math.min(windowSize.X - 400, windowSize.Y - 100) / 8),
                     Math.min(windowSize.X - 400, windowSize.Y - 100) / 8))
                     .toArray(Vector2[]::new));
         });
 
+        System.out.println("switched to game scene");
+        System.out.println(windowSize);
+        System.out.println();
         return game;
     }
 
     private Scene settingsScene(Stage stage) {
         Pane root = new Pane();
-        Canvas canvas = new Canvas(windowSize.X, windowSize.Y);
+        Canvas canvas = new Canvas(windowSize.X += Offset.X * 2, windowSize.Y += Offset.Y);
         GraphicsContext gc = canvas.getGraphicsContext2D();
         Scene settings = new Scene(root, windowSize.X, windowSize.Y);
         root.getChildren().add(canvas);
@@ -152,12 +161,17 @@ public class Window extends Application {
         // }
         // buttons[0].setOnAction(e -> System.out.println("guh")); // TODO: settings
 
+        settings.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE)
+                stage.setScene(menuScene(stage));
+        });
+
         stage.widthProperty().addListener((observable, oldValue, newValue) -> {
             windowSize = new Vector2(newValue.intValue(), windowSize.Y);
             canvas.setWidth(windowSize.X);
             Draw.settings(gc, windowSize);
 
-            ResizeButton.x(buttons, new Vector2[] {
+            Resize.buttonX(buttons, new Vector2[] {
 
             });
         });
@@ -166,12 +180,22 @@ public class Window extends Application {
             canvas.setHeight(windowSize.Y);
             Draw.settings(gc, windowSize);
 
-            ResizeButton.y(buttons, new Vector2[] {
+            Resize.buttonY(buttons, new Vector2[] {
 
             });
         });
 
+        System.out.println("switched to settings scene");
+        System.out.println(windowSize);
+        System.out.println();
         return settings;
+    }
+
+    private Pane addSettingsOverlay(Scene scene) {
+        System.out.println("enabled settings pane");
+        System.out.println(windowSize);
+        System.out.println();
+        return null;
     }
 
 }
