@@ -1,0 +1,23 @@
+graphics:
+    settings:
+        resolution slider:
+            -640*360
+            -1280*720
+            -1920*1080
+            -2560*1440
+            -3840*2160
+            -fullscreen
+
+            hide all options past max res
+            if they somehow have something smaller than 640*360
+                bully them for having a small monitor and close
+
+        volume slider
+        music checkbox:
+            soundtrack is cbat or sum stupid
+        game sounds checkbox
+
+        anarchy mode checkbox
+
+        
+        

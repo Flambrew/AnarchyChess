@@ -1,7 +1,12 @@
 .root {
     -fx-background-color: #202531;
 }
-    
-#titleRect {
+
+.button {
+    -fx-background-color: #818698;
+    -fx-background-radius: 25;
+}
+
+Rectangle {
     -fx-fill: #818698;
 }

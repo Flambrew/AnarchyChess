@@ -1,0 +1,7 @@
+.root {
+    -fx-background-color: #202531;
+}
+
+Rectangle {
+    -fx-fill: #818698;
+}

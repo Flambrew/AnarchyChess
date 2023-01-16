@@ -21,14 +21,10 @@ public class SettingsController {
     }
 
     public void switchToMenu(ActionEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-        Parent root = loader.load();
+        Parent root = new FXMLLoader(getClass().getResource("Menu.fxml")).load();
         Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
-        MenuController controller = loader.getController();
-
         stage.setScene(scene);
-        scene.getStylesheets().add(this.getClass().getResource("Menu.css").toExternalForm());
         stage.show();
     }
 }

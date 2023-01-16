@@ -2,10 +2,12 @@ package src.main;
 
 import java.util.ArrayList;
 
+import javafx.application.Application;
 import src.game.Board;
 import src.game.Rules;
 import src.game.piece.Move;
 import src.game.piece.attributes.Color;
+import src.graphics.WindowInitializer;
 
 /**
  * Anarchy Chess
@@ -20,34 +22,36 @@ public class MainLoop {
     public static Board board = new Board();
     public static Color color;
 
-    // public static void main(String[] args) {
-    //     while (true) { // turnloop
+    public static void main(String[] args) {
+        Application.launch(WindowInitializer.class, args);
 
-    //         System.out.println(board);
+        while (true) { // turnloop
 
-    //         while (true) { // white turn
-    //             color = Color.WHITE;
-    //             ArrayList<Move> moves = Rules.getLegalMoves(board, color);
-    //             // print(moves);
+            System.out.println(board);
 
-    //             Move m = moves.get((int) (Math.random() * moves.size()));
-    //             board.move(m);
+            while (true) { // white turn
+                color = Color.WHITE;
+                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
+                // print(moves);
 
-    //             break;
-    //         }
+                Move m = moves.get((int) (Math.random() * moves.size()));
+                board.move(m);
 
-    //         System.out.println(board);
+                break;
+            }
 
-    //         while (true) { // black turn
-    //             color = Color.BLACK;
-    //             ArrayList<Move> moves = Rules.getLegalMoves(board, color);
-    //             // print(moves);
+            System.out.println(board);
 
-    //             Move m = moves.get((int) (Math.random() * moves.size()));
-    //             board.move(m);
+            while (true) { // black turn
+                color = Color.BLACK;
+                ArrayList<Move> moves = Rules.getLegalMoves(board, color);
+                // print(moves);
 
-    //             break;
-    //         }
-    //     }
-    // }
+                Move m = moves.get((int) (Math.random() * moves.size()));
+                board.move(m);
+
+                break;
+            }
+        }
+    }
 }
