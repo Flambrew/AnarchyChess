@@ -11,11 +11,6 @@ import javafx.stage.Stage;
 
 public class GameController {
 
-    // public final Color MENU = new Color(.318, .337, .384, 1);
-    // public final Color TEXT = new Color(.933, 1, 1, 1);
-    // public final Color LIGHT = new Color(.8, .655, 0, 1);
-    // public final Color DARK = new Color(.514, .404, .141, 1);
-
     public void initialize() {
         System.out.println("GameInit");
     }

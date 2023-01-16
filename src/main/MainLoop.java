@@ -19,12 +19,25 @@ import src.graphics.WindowInitializer;
 
 public class MainLoop {
 
-    public static Board board = new Board();
-    public static Color color;
+    private static Board board;
+    private static Color color;
+    private static boolean anarchy;
+    
+    public static boolean isAnarchy() {
+        return anarchy;
+    }
+
+    public static void setAnarchy(boolean anarchy) {
+        MainLoop.anarchy = anarchy;
+    }
 
     public static void main(String[] args) {
-        Application.launch(WindowInitializer.class, args);
+        board = new Board();
 
+        Application.launch(WindowInitializer.class, args);
+    }
+
+    private void runGame() {
         while (true) { // turnloop
 
             System.out.println(board);

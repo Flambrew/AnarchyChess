@@ -28,6 +28,7 @@ public class WindowInitializer extends Application {
     public void start(Stage stage) {
         stage.setTitle("AnarchyChess");
         stage.getIcons().add(icon);
+        stage.setResizable(false);
 
         try {
             Parent root = new FXMLLoader(getClass().getResource(fxml)).load();

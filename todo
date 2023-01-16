@@ -1,12 +1,12 @@
 graphics:
     settings:
         resolution slider:
-            -640*360
-            -1280*720
-            -1920*1080
-            -2560*1440
-            -3840*2160
-            -fullscreen
+            #-640*360
+            #-1280*720
+            #-1920*1080
+            #-2560*1440
+            #-3840*2160
+            #-fullscreen
 
             hide all options past max res
             if they somehow have something smaller than 640*360
@@ -18,6 +18,11 @@ graphics:
         game sounds checkbox
 
         anarchy mode checkbox
+    
+    game:
+        location buttons
+        piece icons
+        connect game/graphics code
 
-        
+
         
